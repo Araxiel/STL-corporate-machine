@@ -1,0 +1,69 @@
+## General
+
+pop_faction_name_parts_list = {
+	key = "corp_names_ending"
+	parts = {
+		"Corp" = 3
+		"Incorporated" = 1
+		"Networks" = 1
+		"Wares" = 1
+		"Products" = 1
+		"Systems" = 1
+		"Enterprises" = 1
+		"Syndicate" = 1
+		"Works" = 1
+		"Group" = 1
+		"Services" = 1
+		"Union" = 1
+		"Partnership" = 1
+		"of [This.Owner.GetHomeWorldName]" = 1
+		"Dynamics" = 1
+		"Holdings" = 1
+		"Intergalactic" = 1
+		"Companies" = 1
+		"Limited" = 1
+		"" = 8
+	}
+}
+
+## Agricorp
+pop_faction_name_parts_list = {
+	key = "corp_agricorp_names_1"
+	parts = {
+		"Green" = 1
+		"Technofarm" = 1
+		"Viridian" = 1
+		"Verdigris" = 1
+		"Agri" = 1
+		"[This.Owner.GetHomeWorldName]" = 1
+		"Adeco" = 1
+		"Agria" = 1
+		"Homestead" = 1
+		"Eco" = 1
+	}
+}
+
+pop_faction_name_parts_list = {
+	key = "corp_agricorp_names_2"
+	parts = {
+		" Santo" = 1
+		" Farms" = 2
+		"agro" = 1
+		" Seeds" = 1
+		" Seed Pool" = 1
+		" Foods" = 1
+		" Produce" = 1
+		" Harvests" = 1
+	}
+}
+
+pop_faction_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 100
+			is_pop_faction_type = "corp_agricorp"
+		}
+	}
+	format = "<corp_agricorp_names_1><corp_agricorp_names_2> <corp_names_ending>"
+}

@@ -1,0 +1,20 @@
+﻿l_english:
+####################################
+
+pft_corp_agricorp: "Agricultural Corporation"
+pft_corp_agricorp_desc: "This masive megacorporation works in the agricultural sector; it operates massive farms and delivers food across the entire nation and beyond. Agricultural companies are in some ways the least difficult to deal with and at the same time possibly the most important sector."
+
+agricorp.1.title: "Agricultural Megacorporation Formed"
+agricorp.1.desc: "It has come to our attention that §H[Root.GetName]§!, one of our nation's agricultural companies, has grown to impressive size. They now operate across multiple planets and engage a small army of employees.\n\nWhile the economy can be a fickle mistress, it does seem that §H[Root.GetName]§! is going to continue expanding. Having so much of the agricultural industry be controlled by one corporation can cause problems, but can also be a boon if we can get them on the government's side."
+
+agricorp.2.title: "§H[Root.GetName]§! Plans New Farm"
+agricorp.2.desc:  "§H[Root.GetName]§! has approached our government with a request to buy a large area on §Y[Root.new_agricorp_building_planet.GetName]§!.\n\nWe can approve of the transaction, or we can even give them the land for free. Alternativly, we can also deny their request, but they won't like it."
+
+building_corp_agriculture_hq1: "Agricorp Headquarters"
+building_corp_agriculture_hq2: "Agricorp Galactic Headquarters"
+
+#####
+## Generic
+GIVE_IT_TO_CORP: "Let's show them our genorosity."
+SELL_IT_TO_CORP: "We have a deal."
+DENY_CORP: "There is no deal."

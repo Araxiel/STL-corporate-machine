@@ -1,0 +1,345 @@
+###############################
+# Corp Events
+# by Araxiel
+###############################
+
+
+namespace = agricorp
+
+#Agricorp Creation
+pop_faction_event = {
+	id = agricorp.1
+	title = agricorp.1.title
+	desc = "agricorp.1.desc"
+
+	picture = GFX_evt_megafarm
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	after = {
+	}
+
+	option = {
+		name = OK
+		owner = {
+			random_owned_planet = {
+				random_tile = {
+					limit = {
+						has_blocker = no
+						OR = {
+							has_building = no
+							has_building = building_biolab_1
+							has_building = building_biolab_2
+							has_building = building_biolab_3
+							has_building = building_biolab_4
+							has_building = building_basic_farm
+							has_building = building_hydroponics_farm_1
+							has_building = building_hydroponics_farm_2
+							has_building = building_hydroponics_farm_3
+							has_building = building_hydroponics_farm_4
+							has_building = building_hydroponics_farm_5
+						}
+					}
+					set_building = building_corp_agriculture_hq1
+					random_neighboring_tile  = {
+						limit = {
+							has_blocker = no
+							OR = {
+								has_building = no
+								has_building = building_biolab_1
+								has_building = building_biolab_2
+								has_building = building_biolab_3
+								has_building = building_biolab_4
+								has_building = building_basic_farm
+								has_building = building_hydroponics_farm_1
+								has_building = building_hydroponics_farm_2
+								has_building = building_hydroponics_farm_3
+								has_building = building_hydroponics_farm_4
+								has_building = building_hydroponics_farm_5
+							}
+						}
+						add_building_construction = building_corp_agriculture_farm1
+					}
+				}
+			}
+			hidden_effect = {
+				owner = {
+					every_owned_planet = {
+						every_owned_pop = {
+							force_faction_evaluation = yes
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+pop_faction_event = {
+	id = agricorp.2
+	title = agricorp.2.title
+	desc = "agricorp.2.desc"
+	location = event_target:new_agricorp_building_planet
+
+	picture = GFX_evt_megafarm
+	show_sound = event_factions
+
+	trigger = {
+		is_pop_faction_type = corp_agricorp
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				random_tile = {
+					limit = {
+						has_blocker = no
+						OR = {
+							AND = {
+								has_building = no
+								has_resource = food
+							}
+							has_building = building_basic_farm
+							has_building = building_hydroponics_farm_1
+							has_building = building_hydroponics_farm_2
+							has_building = building_hydroponics_farm_3
+							has_building = building_hydroponics_farm_4
+							has_building = building_hydroponics_farm_5
+						}
+					}
+				}
+			}
+			save_event_target_as = new_agricorp_building_planet
+		}
+	}
+
+	mean_time_to_happen = {
+		years = 10
+	}
+
+	after = {
+	}
+
+	option = { # gift it
+		name = GIVE_IT_TO_CORP
+			event_factions:new_agricorp_building_planet = {
+				random_tile = {
+					limit = {
+						has_blocker = no
+						OR = {
+							AND = {
+								has_building = no
+								has_resource = food
+							}
+							has_building = building_basic_farm
+							has_building = building_hydroponics_farm_1
+							has_building = building_hydroponics_farm_2
+							has_building = building_hydroponics_farm_3
+							has_building = building_hydroponics_farm_4
+							has_building = building_hydroponics_farm_5
+						}
+					}
+					add_building_construction = building_corp_agriculture_farm1
+				}
+			}
+
+		set_timed_pop_flag = { flag = corp_gift_given months = 6 }
+	}
+
+	option = { # sell it to them
+		name = SELL_IT_TO_CORP
+		owner = {
+			random_owned_planet = {
+				random_tile = {
+					limit = {
+						has_blocker = no
+						OR = {
+							AND = {
+								has_building = no
+								has_resource = food
+							}
+							has_building = building_basic_farm
+							has_building = building_hydroponics_farm_1
+							has_building = building_hydroponics_farm_2
+							has_building = building_hydroponics_farm_3
+							has_building = building_hydroponics_farm_4
+							has_building = building_hydroponics_farm_5
+						}
+					}
+					add_building_construction = building_corp_agriculture_farm1
+				}
+			}
+			add_energy = 250
+		}
+	}
+
+	option = { #deny request
+		name = DENY_CORP
+		set_timed_pop_flag = { flag = demand_denied months = 7 }
+	}
+
+}
+
+pop_faction_event = {
+	id = agricorp.2
+	title = agricorp.2.title
+	desc = "agricorp.2.desc"
+
+	picture = GFX_evt_megafarm
+	show_sound = event_factions
+
+	trigger = {
+		is_pop_faction_type = corp_agricorp
+	}
+
+	mean_time_to_happen = {
+		years = 10
+	}
+
+	after = {
+	}
+
+	option = { # gift it
+		name = GIVE_IT_TO_CORP
+		owner = {
+			random_owned_planet = {
+				random_tile = {
+					limit = {
+						has_blocker = no
+						OR = {
+							AND = {
+								has_building = no
+								has_resource = food
+							}
+							has_building = building_basic_farm
+							has_building = building_hydroponics_farm_1
+							has_building = building_hydroponics_farm_2
+							has_building = building_hydroponics_farm_3
+							has_building = building_hydroponics_farm_4
+							has_building = building_hydroponics_farm_5
+						}
+					}
+					add_building_construction = building_corp_agriculture_farm1
+				}
+			}
+		}
+		set_timed_pop_flag = { flag = corp_gift_given months = 6 }
+	}
+
+	option = { # sell it to them
+		name = SELL_IT_TO_CORP
+		owner = {
+			random_owned_planet = {
+				random_tile = {
+					limit = {
+						has_blocker = no
+						OR = {
+							AND = {
+								has_building = no
+								has_resource = food
+							}
+							has_building = building_basic_farm
+							has_building = building_hydroponics_farm_1
+							has_building = building_hydroponics_farm_2
+							has_building = building_hydroponics_farm_3
+							has_building = building_hydroponics_farm_4
+							has_building = building_hydroponics_farm_5
+						}
+					}
+					add_building_construction = building_corp_agriculture_farm1
+				}
+			}
+			add_energy = 250
+		}
+	}
+
+	option = { #deny request
+		name = DENY_CORP
+		set_timed_pop_flag = { flag = demand_denied months = 7 }
+	}
+
+}
+
+
+##### Debugging Events
+
+namespace = corp_debug
+
+country_event = {
+	id = corp_debug.1
+	title = corp_debug.1.title
+	desc = "corp_debug.1.desc"
+
+	picture = GFX_evt_galactic_senate
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { hates_corporations = yes }
+		corporations_allowed = yes
+	}
+
+	after = {
+	}
+
+	option = {
+		name = OK
+		enable_faction_of_type = corp_agricorp
+		every_owned_planet = {
+			every_owned_pop = {
+				force_faction_evaluation = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = corp_debug.2
+	title = corp_debug.2.title
+	desc = "corp_debug.2.desc"
+
+	picture = GFX_evt_galactic_senate
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_pop = {
+			is_enslaved = no
+			is_shackled_robot = no
+			is_being_purged = no
+			has_culture_shock = no
+			NOT = { has_trait = trait_nerve_stapled }
+			NOT = { hates_corporations = yes }
+			OR = { # produces food or HQ on planet
+				pop_produces_resource = { type = food amount > 1 }
+				planet = { # checks if HQ or
+					any_tile = {
+						OR = {
+							has_building = building_corp_agriculture_hq1
+							has_building = building_corp_agriculture_hq_branch
+						}
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+	}
+
+	option = {
+		name = OK
+		every_owned_planet = {
+			every_owned_pop = {
+				set_pop_faction = corp_agricorp
+			}
+		}
+	}
+}

@@ -1,0 +1,68 @@
+corporations_allowance = {
+	potential = {
+		NOT = { has_ethic = "ethic_gestalt_consciousness" }
+	}
+
+	option = {
+		name = "corporations_allowed"
+
+		valid = {
+			NOT = { is_subject_type = signatory }
+      NOT = { hates_corporations = yes }
+		}
+
+		policy_flags = {
+			corporations_allowed
+		}
+		modifier = {}
+
+	}
+
+	option = {
+		name = "corporations_not_allowed"
+
+		policy_flags = {
+			corporations_not_allowed
+		}
+
+		valid = {
+			NOT = { has_ethic = ethic_fanatic_egalitarian }
+		}
+	}
+
+}
+
+corporations_regulation = {
+	potential = {
+		has_policy_flag = corporations_allowed
+	}
+
+	option = {
+		name = "corporations_free_markets"
+
+		policy_flags = {
+			corporations_free_markets
+		}
+		modifier = {}
+
+	}
+
+	option = {
+		name = "corporations_laissez_faire"
+
+		policy_flags = {
+			corporations_laissez_faire
+		}
+		modifier = {}
+
+	}
+
+	option = {
+		name = "corporations_heavily_regulated"
+
+		policy_flags = {
+			corporations_heavily_regulated
+		}
+	}
+
+}

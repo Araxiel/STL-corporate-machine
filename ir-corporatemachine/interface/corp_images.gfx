@@ -1,0 +1,23 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_faction_icon_corp_agricorp"
+		textureFile = "gfx/interface/icons/faction_icons/agricorp.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_evt_megafarm"
+		texturefile = "gfx/event_pictures/megafarm.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_evt_megafarm"
+		texturefile = "gfx/event_pictures/megafarm.dds"
+		masking_texture = "gfx\interface\icons\buildings\agricorp_hq1.dds"
+		alwaystransparent = yes
+	}
+
+}

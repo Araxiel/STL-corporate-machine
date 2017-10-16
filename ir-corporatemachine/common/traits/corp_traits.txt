@@ -1,0 +1,18 @@
+
+# hired by agricultural corp
+# WIP
+leader_trait_corp_agricorp = {
+	cost = 1
+	modification = no
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_iron_fist.dds"
+	modifier = {
+		slave_mineral_output = 0.1
+		slave_food_output = 0.1
+	}
+	leader_potential_add = {
+		from = { allows_slavery = yes }
+		NOT = { from = { has_authority = "auth_machine_intelligence" } }
+	}
+	leader_trait = yes
+	leader_class = { governor }
+}

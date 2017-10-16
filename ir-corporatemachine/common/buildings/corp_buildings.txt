@@ -1,0 +1,100 @@
+building_corp_agriculture_hq1 = {
+	is_listed = no
+	icon = "building_probability_engine"
+
+	cost = {}
+	required_resources = {}
+	produced_resources = {
+		energy = 6
+		food = 1
+	}
+
+	upgrades = {
+	}
+
+	ai_replace = no
+	event_building = yes
+}
+building_corp_agriculture_hq2 = {
+	is_listed = no
+	icon = "building_probability_engine"
+
+	cost = {}
+	required_resources = {}
+  produced_resources = {
+		energy = 10
+		food = 1
+	}
+
+	upgrades = {
+	}
+
+	ai_replace = no
+	event_building = yes
+}
+
+building_corp_agriculture_hq_branch = {
+	is_listed = no
+	icon = "building_probability_engine"
+
+	cost = {}
+	required_resources = {}
+	produced_resources = {
+		energy = 5
+	}
+
+	upgrades = {
+	}
+
+	ai_replace = no
+	event_building = yes
+}
+
+building_corp_agriculture_farm1 = {
+	is_listed = no
+	icon = "building_xeno_zoo"
+
+	cost = {}
+	required_resources = {}
+	produced_resources = {
+		food = 2
+	}
+
+	upgrades = {
+	}
+
+	ai_replace = no
+	event_building = yes
+}
+building_corp_agriculture_farm2 = {
+	is_listed = no
+	icon = "building_xeno_zoo"
+
+	cost = {}
+	required_resources = {}
+	produced_resources = {
+		food = 4
+	}
+
+	upgrades = {
+	}
+
+	ai_replace = no
+	event_building = yes
+}
+building_corp_agriculture_farm3 = {
+	is_listed = no
+	icon = "building_xeno_zoo"
+
+	cost = {}
+	required_resources = {}
+	produced_resources = {
+		food = 6
+	}
+
+	upgrades = {
+	}
+
+	ai_replace = no
+	event_building = yes
+}

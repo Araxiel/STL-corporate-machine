@@ -1,0 +1,15 @@
+
+#checks to see if not a fanatic type that does not believe in private enterprise
+
+hates_corporations = {
+  OR = {
+  	has_ethic = ethic_gestalt_consciousness
+    has_ethic = ethic_fanatic_spiritualist
+    has_ethic = ethic_fanatic_militarist
+    has_ethic = ethic_fanatic_authoritarian
+  }
+}
+
+corporations_allowed = {
+  has_policy_flag = corporations_allowed
+}

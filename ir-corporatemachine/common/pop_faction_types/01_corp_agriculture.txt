@@ -1,0 +1,460 @@
+##############################
+# Agricultural Corporation
+##############################
+
+corp_agricorp = {
+	election_header = "GFX_faction_header_green"
+	guiding_ethic = ethic_pacifist
+
+	unique = yes
+	support_multiplier = 1.5
+
+	is_potential = {
+		NOT = { hates_corporations = yes }
+		corporations_allowed = yes
+	}
+
+	parameters = {
+		empire = {
+			type = country
+			valid_objects = {
+				is_same_value = root
+			}
+		}
+	}
+
+	can_join_faction = {
+		is_enslaved = no
+		is_shackled_robot = no
+		is_being_purged = no
+		has_culture_shock = no
+		NOT = { has_trait = trait_nerve_stapled }
+		NOT = { hates_corporations = yes }
+		OR = { # produces food or HQ on planet
+			pop_produces_resource = { type = food amount > 1 }
+			planet = { # checks if HQ or
+				any_tile = {
+					OR = {
+						has_building = building_corp_agriculture_hq1
+						has_building = building_corp_agriculture_hq_branch
+					}
+				}
+			}
+		}
+	}
+
+	attraction = {
+		base = 100
+
+		modifier = {
+			factor = 1.25
+			exists = from
+			from = {
+				exists = leader
+				leader = { leader_class = ruler }
+			}
+		}
+
+		modifier = {
+			factor = 0.75
+			exists = from
+			from = {
+				NOT = { exists = leader }
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			owner = {
+				has_policy_flag  = corporations_laissez_faire
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			planet = {
+				has_edict = corp_agricorp_boost
+			}
+		}
+
+		modifier = {
+			factor = 1.25
+			planet = {
+				OR = {
+					has_building = building_corp_agriculture_hq1
+					has_building = building_corp_agriculture_hq_branch
+				}
+			}
+		}
+
+		modifier = {
+			factor = 1.6
+			tile = {
+				OR = {
+					has_building = building_corp_agriculture_hq1
+					has_building = building_corp_agriculture_hq_branch
+					has_building = building_corp_agriculture_farm1
+					has_building = building_corp_agriculture_farm2
+					has_building = building_corp_agriculture_farm3
+				}
+			}
+		}
+
+		modifier = {
+			factor = 1.2
+			parameter:empire = {
+				any_owned_planet  = {
+					has_building = building_corp_agriculture_hq1
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0.5
+			AND = {
+				pop_produces_resource = { type = food amount < 1 }
+				OR = {
+					tile = {
+						NOT = { has_building = building_corp_agriculture_hq1 }
+					}
+					tile = {
+						NOT = { has_building = building_corp_agriculture_hq_branch }
+					}
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0.1
+			parameter:empire = {
+				corporations_allowed = yes
+			}
+		}
+	}
+
+	leader = {
+		base = 100
+
+		modifier = {
+			factor = 0.0
+			OR = {
+				leader_class = admiral
+				leader_class = general
+			}
+		}
+
+		modifier = {
+			factor = 1.3
+			has_trait = leader_trait_agrarian_upbringing
+		}
+
+		modifier = {
+			factor = 1.3
+			has_trait = leader_trait_corp_agricorp
+		}
+
+		modifier = {
+			factor = 1.15
+			has_trait = leader_trait_expertise_biology
+		}
+
+		modifier = {
+			factor = 0.0
+			is_event_leader = yes
+		}
+	}
+
+	## Demands
+	## WIP
+
+	demand = {
+		title = "LAISSEZ-FAIRE"
+		unfulfilled_title = "FREE_MARKET"
+		desc = "LAISSEZ-FAIRE_DESCRIPTION"
+
+		fulfilled_effect = 10
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = { has_policy_flag = corporations_laissez_faire }
+		}
+	}
+
+	demand = {
+		title = "GOOD_ECONOMY"
+		unfulfilled_title = "NOT_GOOD_ECONOMY"
+		desc = "GOOD_ECONOMY_DESCRIPTION"
+
+		fulfilled_effect = 10
+
+		potential = {
+			exists = owner
+			owner = { has_country_flag = good_economy }
+		}
+
+		trigger = {
+			owner = { has_country_flag = good_economy }
+		}
+	}
+
+	demand = {
+		title = "NORMAL_ECONOMY"
+		unfulfilled_title = "BAD_ECONOMY"
+		desc = "BAD_ECONOMY_DESCRIPTION"
+
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = { has_country_flag = bad_economy }
+		}
+
+		trigger = {
+			owner = { NOT = { has_country_flag = bad_economy } }
+		}
+	}
+
+	demand = {
+		title = "NO_AGRARIAN_CRASH"
+		unfulfilled_title = "AGRARIAN_CRASH"
+		desc = "AGRARIAN_CRASH_DESCRIPTION"
+
+		unfulfilled_effect = -25
+
+		potential = {
+			exists = owner
+			owner =  { has_country_flag = bad_economy }
+		}
+
+		trigger = {
+			owner = { NOT = { has_country_flag = bad_economy } }
+		}
+	}
+
+	demand = {
+		title = "AGRARIAN_GOODS_DEMAND"
+		unfulfilled_title = "AGRARIAN_GOODS_NORMAL"
+		desc = "AGRARIAN_GOODS_DEMAND_DESCRIPTION"
+
+		fulfilled_effect = 10
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = { has_country_flag = agrarian_goods_demand }
+		}
+	}
+
+	demand = {
+		title = "GIFT_GIVEN"
+		unfulfilled_title = "NO_GIFT_GIVEN"
+		desc = "GIFT_GIVEN_DESCRIPTION"
+
+		fulfilled_effect = 7
+
+		potential = {
+			has_pop_faction_flag = corp_gift_given
+		}
+
+		trigger = {
+			has_pop_faction_flag = corp_gift_given
+		}
+	}
+
+	demand = {
+		title = "DEMANDS_ACCEPTED"
+		unfulfilled_title = "DEMANDS_DENIED"
+		desc = "DEMANDS_DENIED_DESCRIPTION"
+
+		unfulfilled_effect = -8
+
+		potential = {
+			has_pop_faction_flag = demand_denied
+		}
+
+		trigger = {
+			NOT = { has_pop_faction_flag = demand_denied }
+		}
+	}
+
+	demand = {
+		title = "CORP_NOT_ANGERED"
+		unfulfilled_title = "CORP_ANGERED"
+		desc = "CORP_ANGERED_DESCRIPTION"
+
+		unfulfilled_effect = -18
+
+		potential = {
+			has_pop_faction_flag = corp_angered
+		}
+
+		trigger = {
+			owner = { NOT = { has_pop_faction_flag = corp_angered } }
+		}
+	}
+
+	demand = {
+		title = "HQ_NOT_OCCUPIED"
+		unfulfilled_title = "HQ_OCCUPIED"
+		desc = "HQ_OCCUPIED_DESCRIPTION"
+
+		unfulfilled_effect = -15
+
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_planet = {
+					has_building = building_corp_agriculture_hq1
+				}
+			}
+		}
+
+		trigger = {
+			owner = {
+				any_owned_planet = {
+					has_building = building_corp_agriculture_hq1
+					is_occupied_flag = yes
+				}
+			}
+		}
+	}
+
+	#	WIP
+	on_create = {
+		pop_faction_event = { id = agricorp.1 }
+	}
+
+	on_destroy = {
+		if = { # destroys HQ
+			limit = {
+				any_owned_planet = {
+					has_building = building_corp_agriculture_hq1
+				}
+			}
+			every_owned_planet  = {
+				every_tile = {
+					limit = {
+						has_building = building_corp_agriculture_hq1
+					}
+					remove_building = yes
+				}
+			}
+		}
+
+		if = { # destroys branches
+			limit = {
+				any_owned_planet = {
+					has_building = building_corp_agriculture_hq_branch
+				}
+			}
+			every_owned_planet = {
+				every_tile = {
+					limit = {
+						has_building = building_corp_agriculture_hq_branch
+					}
+					remove_building = yes
+				}
+			}
+		}
+	}
+
+	#	WIP
+	actions = {
+
+		promote_faction = {
+			title = "PROMOTE_FACTION"
+			description = "PROMOTE_FACTION_DESC"
+
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = suppressed_militarist
+						has_modifier = promoted_militarist
+					}
+				}
+			}
+
+			effect = {
+				parameter:empire = {
+					add_modifier = { modifier = promoted_militarist days = -1 }
+				}
+			}
+
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_promote_faction = {
+			title = "CANCEL_PROMOTE_FACTION"
+			description = "CANCEL_PROMOTE_FACTION_DESC"
+
+			potential = {
+				exists = owner
+				parameter:empire = { has_modifier = promoted_militarist }
+			}
+
+			effect = {
+				parameter:empire = {
+					remove_modifier = promoted_militarist
+				}
+			}
+
+			ai_weight = {
+				base = 0
+			}
+		}
+
+		sanction_corp = {
+			title = "SANCTION_CORP"
+			description = "SANCTION_CORP_DESC"
+
+			potential = {
+				exists = owner
+				parameter:empire = {
+					NOR = {
+						has_modifier = suppressed_militarist
+						has_modifier = promoted_militarist
+					}
+				}
+			}
+
+			effect = {
+				add_modifier = { modifier = suppressed_faction days = -1 }
+				parameter:empire = {
+					add_modifier = { modifier = suppressed_pacifist days = -1 }
+				}
+			}
+
+			ai_weight = {
+				base = 0
+			}
+		}
+		cancel_sanction_corp = {
+			title = "CANCEL_SANCTION_CORP"
+			description = "CANCEL_SANCTION_CORP_DESC"
+
+			potential = {
+				exists = owner
+				parameter:empire = { has_modifier = suppressed_pacifist }
+			}
+
+			effect = {
+				remove_modifier = suppressed_faction
+				parameter:empire = {
+					remove_modifier = suppressed_pacifist
+				}
+			}
+
+			ai_weight = {
+				base = 0
+			}
+		}
+
+	}
+}

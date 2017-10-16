@@ -1,0 +1,34 @@
+
+@standardEdictCost = 150
+@standardEdictDuration = 3600
+
+planet_edict = {
+	name = "corp_agricorp_boost"
+	influence_cost = @standardEdictCost
+	modifier = {
+
+	}
+
+	potential = {
+		owner = {
+			NOT = {
+				has_authority = auth_hive_mind
+				has_authority = auth_machine_intelligence
+			}
+      corporations_allowed = yes
+		}
+	}
+
+	length = @standardEdictDuration
+
+	allow = {
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 10
+		}
+	}
+}
