@@ -7,14 +7,15 @@ corporations_allowance = {
 		name = "corporations_allowed"
 
 		valid = {
-			NOT = { is_subject_type = signatory }
       NOT = { hates_corporations = yes }
 		}
 
 		policy_flags = {
 			corporations_allowed
 		}
-		modifier = {}
+		modifier = {
+			country_trade_attractiveness = 0.10
+		}
 
 	}
 
@@ -26,13 +27,18 @@ corporations_allowance = {
 		}
 
 		valid = {
-			NOT = { has_ethic = ethic_fanatic_egalitarian }
+			OR = {
+				NOT = { has_ethic = ethic_fanatic_egalitarian }
+				NOT = { has_ethic = ethic_materialist }
+			}
+			NOT = { has_policy_flag = corporations_own_politics }
 		}
 	}
 
 }
 
 corporations_regulation = {
+
 	potential = {
 		has_policy_flag = corporations_allowed
 	}
@@ -43,6 +49,11 @@ corporations_regulation = {
 		policy_flags = {
 			corporations_free_markets
 		}
+
+		valid = {
+			NOT = { has_policy_flag = corporations_own_politics }
+		}
+
 		modifier = {}
 
 	}
@@ -53,7 +64,12 @@ corporations_regulation = {
 		policy_flags = {
 			corporations_laissez_faire
 		}
-		modifier = {}
+
+		modifier = {
+			country_trade_attractiveness = 0.10
+			tile_resource_energy_mult = 0.10
+			tooltip  = "laissez_faire_consequence_tooltip"
+		}
 
 	}
 
@@ -62,6 +78,76 @@ corporations_regulation = {
 
 		policy_flags = {
 			corporations_heavily_regulated
+		}
+
+		valid = {
+			NOT = { has_policy_flag = corporations_own_politics }
+		}
+
+		modifier = {
+			country_trade_attractiveness = -0.10
+			pop_happiness = 0.05
+			description = "heavily_regulated_corp_consequence_tooltip"
+		}
+	}
+
+}
+
+corporations_lobbying = {
+
+	potential = {
+		has_policy_flag = corporations_allowed
+	}
+
+	option = {
+		name = "corporations_can_lobby"
+
+		policy_flags = {
+			corporations_can_lobby
+		}
+
+		description = "corporations_can_lobby_consequence_tooltip"
+		modifier = {
+		}
+
+	}
+
+	option = {
+		name = "corporations_own_politics"
+
+		policy_flags = {
+			corporations_own_politics
+		}
+
+		valid = {
+			NOT = { has_ethic = ethic_fanatic_egalitarian }
+			NOT = { has_ethic = ethic_spiritualist }
+			NOT = { has_authority = auth_imperial }
+		}
+
+		tooltip = "corporations_own_politics_consequence_tooltip"
+		modifier = {
+			pop_happiness = -0.2
+		}
+
+	}
+
+	option = {
+		name = "corporations_money_out_of_politics"
+
+		policy_flags = {
+			corporations_money_out_of_politics
+		}
+
+		valid = {
+			NOT = { has_policy_flag = corporations_own_politics }
+		}
+
+		modifier = {
+			pop_happiness = 0.05
+			custom_tooltip = {
+				text = corporations_money_out_of_politics_consequence_tooltip
+			}
 		}
 	}
 

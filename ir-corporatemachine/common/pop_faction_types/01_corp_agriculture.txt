@@ -184,6 +184,24 @@ corp_agricorp = {
 	}
 
 	demand = {
+		title = "FREE_MARKET"
+		unfulfilled_title = "HEAVY_REGULATION"
+		desc = "HEAVY_REGULATION_DESCRIPTION"
+
+		unfulfilled_effect = -12
+
+		potential = {
+			exists = owner
+		}
+
+		trigger = {
+			owner = { NOT = { has_policy_flag = corporations_heavily_regulated } }
+		}
+	}
+
+	## good economy
+
+	demand = {
 		title = "GOOD_ECONOMY"
 		unfulfilled_title = "NOT_GOOD_ECONOMY"
 		desc = "GOOD_ECONOMY_DESCRIPTION"
@@ -200,6 +218,7 @@ corp_agricorp = {
 		}
 	}
 
+	# bad economy
 	demand = {
 		title = "NORMAL_ECONOMY"
 		unfulfilled_title = "BAD_ECONOMY"
@@ -217,6 +236,7 @@ corp_agricorp = {
 		}
 	}
 
+	# agrarian crash
 	demand = {
 		title = "NO_AGRARIAN_CRASH"
 		unfulfilled_title = "AGRARIAN_CRASH"
@@ -234,8 +254,9 @@ corp_agricorp = {
 		}
 	}
 
+	# agrarian boom
 	demand = {
-		title = "AGRARIAN_GOODS_DEMAND"
+		title = "AGRARIAN_BOOM"
 		unfulfilled_title = "AGRARIAN_GOODS_NORMAL"
 		desc = "AGRARIAN_GOODS_DEMAND_DESCRIPTION"
 
@@ -250,6 +271,7 @@ corp_agricorp = {
 		}
 	}
 
+	# gift given
 	demand = {
 		title = "GIFT_GIVEN"
 		unfulfilled_title = "NO_GIFT_GIVEN"
@@ -266,6 +288,7 @@ corp_agricorp = {
 		}
 	}
 
+	# demands accepted
 	demand = {
 		title = "DEMANDS_ACCEPTED"
 		unfulfilled_title = "DEMANDS_DENIED"
@@ -282,6 +305,7 @@ corp_agricorp = {
 		}
 	}
 
+	# corp angered
 	demand = {
 		title = "CORP_NOT_ANGERED"
 		unfulfilled_title = "CORP_ANGERED"
@@ -294,10 +318,11 @@ corp_agricorp = {
 		}
 
 		trigger = {
-			owner = { NOT = { has_pop_faction_flag = corp_angered } }
+			NOT = { has_pop_faction_flag = corp_angered }
 		}
 	}
 
+	# HQ occupied
 	demand = {
 		title = "HQ_NOT_OCCUPIED"
 		unfulfilled_title = "HQ_OCCUPIED"
@@ -308,59 +333,30 @@ corp_agricorp = {
 		potential = {
 			exists = owner
 			owner = {
-				any_owned_planet = {
-					has_building = building_corp_agriculture_hq1
-				}
+				is_at_war = yes
 			}
 		}
 
 		trigger = {
 			owner = {
+				is_at_war = yes
 				any_owned_planet = {
-					has_building = building_corp_agriculture_hq1
+					OR = {
+						has_building = building_corp_agriculture_hq1
+						has_building = building_corp_agriculture_hq2
+					}
+					NOT = { is_controlled_by = owner }
 					is_occupied_flag = yes
 				}
 			}
 		}
 	}
 
-	#	WIP
 	on_create = {
-		pop_faction_event = { id = agricorp.1 }
+		country_event = { id = agricorp.1 }
 	}
 
 	on_destroy = {
-		if = { # destroys HQ
-			limit = {
-				any_owned_planet = {
-					has_building = building_corp_agriculture_hq1
-				}
-			}
-			every_owned_planet  = {
-				every_tile = {
-					limit = {
-						has_building = building_corp_agriculture_hq1
-					}
-					remove_building = yes
-				}
-			}
-		}
-
-		if = { # destroys branches
-			limit = {
-				any_owned_planet = {
-					has_building = building_corp_agriculture_hq_branch
-				}
-			}
-			every_owned_planet = {
-				every_tile = {
-					limit = {
-						has_building = building_corp_agriculture_hq_branch
-					}
-					remove_building = yes
-				}
-			}
-		}
 	}
 
 	#	WIP

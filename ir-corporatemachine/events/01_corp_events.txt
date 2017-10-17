@@ -6,8 +6,9 @@
 
 namespace = agricorp
 
+# agricorp.1
 #Agricorp Creation
-pop_faction_event = {
+country_event = {
 	id = agricorp.1
 	title = agricorp.1.title
 	desc = "agricorp.1.desc"
@@ -21,6 +22,12 @@ pop_faction_event = {
 	}
 
 	after = {
+	}
+
+	immediate = {
+		FROM = {
+			save_event_target_as = new_agricorp
+		}
 	}
 
 	option = {
@@ -80,6 +87,8 @@ pop_faction_event = {
 
 }
 
+# agricorp.2
+# expanding farms
 pop_faction_event = {
 	id = agricorp.2
 	title = agricorp.2.title
@@ -94,10 +103,10 @@ pop_faction_event = {
 	}
 
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				random_tile = {
-					limit = {
+		owner = {
+			random_owned_planet = {
+				limit = {
+					any_tile = {
 						has_blocker = no
 						OR = {
 							AND = {
@@ -113,8 +122,8 @@ pop_faction_event = {
 						}
 					}
 				}
+				save_event_target_as = new_agricorp_building_planet
 			}
-			save_event_target_as = new_agricorp_building_planet
 		}
 	}
 
@@ -127,7 +136,8 @@ pop_faction_event = {
 
 	option = { # gift it
 		name = GIVE_IT_TO_CORP
-			event_factions:new_agricorp_building_planet = {
+
+			event_target:new_agricorp_building_planet = {
 				random_tile = {
 					limit = {
 						has_blocker = no
@@ -147,8 +157,7 @@ pop_faction_event = {
 					add_building_construction = building_corp_agriculture_farm1
 				}
 			}
-
-		set_timed_pop_flag = { flag = corp_gift_given months = 6 }
+			FROM = { set_timed_pop_flag = { flag = corp_gift_given months = 6 } }
 	}
 
 	option = { # sell it to them
@@ -180,89 +189,8 @@ pop_faction_event = {
 
 	option = { #deny request
 		name = DENY_CORP
-		set_timed_pop_flag = { flag = demand_denied months = 7 }
+		FROM = { set_timed_pop_flag = { flag = demand_denied months = 7 } }
 	}
-
-}
-
-pop_faction_event = {
-	id = agricorp.2
-	title = agricorp.2.title
-	desc = "agricorp.2.desc"
-
-	picture = GFX_evt_megafarm
-	show_sound = event_factions
-
-	trigger = {
-		is_pop_faction_type = corp_agricorp
-	}
-
-	mean_time_to_happen = {
-		years = 10
-	}
-
-	after = {
-	}
-
-	option = { # gift it
-		name = GIVE_IT_TO_CORP
-		owner = {
-			random_owned_planet = {
-				random_tile = {
-					limit = {
-						has_blocker = no
-						OR = {
-							AND = {
-								has_building = no
-								has_resource = food
-							}
-							has_building = building_basic_farm
-							has_building = building_hydroponics_farm_1
-							has_building = building_hydroponics_farm_2
-							has_building = building_hydroponics_farm_3
-							has_building = building_hydroponics_farm_4
-							has_building = building_hydroponics_farm_5
-						}
-					}
-					add_building_construction = building_corp_agriculture_farm1
-				}
-			}
-		}
-		set_timed_pop_flag = { flag = corp_gift_given months = 6 }
-	}
-
-	option = { # sell it to them
-		name = SELL_IT_TO_CORP
-		owner = {
-			random_owned_planet = {
-				random_tile = {
-					limit = {
-						has_blocker = no
-						OR = {
-							AND = {
-								has_building = no
-								has_resource = food
-							}
-							has_building = building_basic_farm
-							has_building = building_hydroponics_farm_1
-							has_building = building_hydroponics_farm_2
-							has_building = building_hydroponics_farm_3
-							has_building = building_hydroponics_farm_4
-							has_building = building_hydroponics_farm_5
-						}
-					}
-					add_building_construction = building_corp_agriculture_farm1
-				}
-			}
-			add_energy = 250
-		}
-	}
-
-	option = { #deny request
-		name = DENY_CORP
-		set_timed_pop_flag = { flag = demand_denied months = 7 }
-	}
-
 }
 
 
