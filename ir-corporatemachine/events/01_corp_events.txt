@@ -29,19 +29,17 @@ country_event = {
 }
 
 ### General Corp
-namespace = general_corp
+namespace = corp_general
 
 country_event = {
-	id = general_corp.1
+	id = corp_general.1
 	is_triggered_only = yes
 	hide_window = yes
 
  #gods; bless this mess
 	immediate = {
 		every_country = {
-			every_pop_faction = {
-
-			}
+			divide_variable = { which = agricorp.opinion value = 0.8 }
 		}
 	}
 }
@@ -58,21 +56,17 @@ pop_faction_event = {
 
 	picture = GFX_evt_megafarm
 	show_sound = event_factions
-	location = event_target:new_agricorp_planet
 
 	is_triggered_only = yes
 
 	trigger = {
 	}
 
-	after = {
-	}
-
 	immediate = {
 		owner = {
 			random_owned_planet = {
 				limit = {
-					free_building_tiles < 4
+					free_building_tiles < 5
 					is_homeworld = no
 					any_tile = {
 						has_blocker = no
@@ -96,28 +90,13 @@ pop_faction_event = {
 		}
 	}
 
+	location = event_target:new_agricorp_planet
+
 	option = {
 		name = OK
-		event_target:new_agricorp_planet = {
-			random_tile = {
-				limit = {
-					has_blocker = no
-					OR = {
-						has_building = no
-						has_building = building_biolab_1
-						has_building = building_biolab_2
-						has_building = building_biolab_3
-						has_building = building_biolab_4
-						has_building = building_basic_farm
-						has_building = building_hydroponics_farm_1
-						has_building = building_hydroponics_farm_2
-						has_building = building_hydroponics_farm_3
-						has_building = building_hydroponics_farm_4
-						has_building = building_hydroponics_farm_5
-					}
-				}
-				set_building = building_corp_agriculture_hq1
-				random_neighboring_tile  = {
+		owner= {
+			event_target:new_agricorp_planet = {
+				random_tile = {
 					limit = {
 						has_blocker = no
 						OR = {
@@ -134,7 +113,26 @@ pop_faction_event = {
 							has_building = building_hydroponics_farm_5
 						}
 					}
-					add_building_construction = building_corp_agriculture_farm1
+					set_building = building_corp_agriculture_hq1
+					random_neighboring_tile  = {
+						limit = {
+							has_blocker = no
+							OR = {
+								has_building = no
+								has_building = building_biolab_1
+								has_building = building_biolab_2
+								has_building = building_biolab_3
+								has_building = building_biolab_4
+								has_building = building_basic_farm
+								has_building = building_hydroponics_farm_1
+								has_building = building_hydroponics_farm_2
+								has_building = building_hydroponics_farm_3
+								has_building = building_hydroponics_farm_4
+								has_building = building_hydroponics_farm_5
+							}
+						}
+						add_building_construction = building_corp_agriculture_farm1
+					}
 				}
 			}
 		}
@@ -147,9 +145,9 @@ pop_faction_event = {
 						force_faction_evaluation = yes
 					}
 				}
+				set_variable = { which = agricorp.opinion value = 0 }
 			}
 		}
-		set_variable = { which = agricorp.opinion value = 0 }
 	}
 }
 
@@ -167,6 +165,10 @@ pop_faction_event = {
 	trigger = {
 		is_pop_faction_type = corp_agricorp
 		NOT = { has_pop_faction_flag = cant_expand }
+	}
+
+	mean_time_to_happen = {
+		years = 5
 	}
 
 	immediate = {
@@ -195,42 +197,35 @@ pop_faction_event = {
 		}
 	}
 
-	mean_time_to_happen = {
-		years = 5
-	}
-
 	after = {
 	}
 
 	# gift it
 	option = {
 		name = GIVE_IT_TO_CORP
-			event_target:new_agricorp_building_planet = {
-				random_tile = {
-					limit = {
-						has_blocker = no
-						OR = {
-							AND = {
-								has_building = no
-								has_resource = food
-							}
-							has_building = building_basic_farm
-							has_building = building_hydroponics_farm_1
-							has_building = building_hydroponics_farm_2
-							has_building = building_hydroponics_farm_3
-							has_building = building_hydroponics_farm_4
-							has_building = building_hydroponics_farm_5
+		custom_tooltip = "GAIN_SMALL_OPINION_BOOST"
+		event_target:new_agricorp_building_planet = {
+			random_tile = {
+				limit = {
+					has_blocker = no
+					OR = {
+						AND = {
+							has_building = no
+							has_resource = food
 						}
+						has_building = building_basic_farm
+						has_building = building_hydroponics_farm_1
+						has_building = building_hydroponics_farm_2
+						has_building = building_hydroponics_farm_3
+						has_building = building_hydroponics_farm_4
+						has_building = building_hydroponics_farm_5
 					}
-					add_building_construction = building_corp_agriculture_farm1
 				}
+				add_building_construction = building_corp_agriculture_farm1
 			}
-		random_list = {
-			1 = { change_variable = { which = opinion = value = 8 } }
-			1 = { change_variable = { which = opinion = value = 10 } }
-			1 = { change_variable = { which = opinion = value = 13 } }
-			1 = { change_variable = { which = opinion = value = 16 } }
 		}
+		corp_small_opinion_boost = yes
+		owner = { change_variable = { which = agricorp.opinion value = global_corp_opinion } }
 	}
 
  	# sell it to them
@@ -258,13 +253,17 @@ pop_faction_event = {
 				}
 			}
 			add_energy = 250
+			corp_balanced_opinion = yes
+			owner = { change_variable = { which = agricorp.opinion value = global_corp_opinion } }
 		}
 	}
 
 	# deny request
 	option = {
 		name = DENY_CORP
-		ROOT = { set_timed_pop_flag = { flag = demand_denied months = 7 } }
+		custom_tooltip =  "GAIN_SMALL_OPINION_PENALTY"
+		corp_small_opinion_penalty = yes
+		owner = { change_variable = { which = agricorp.opinion value = global_corp_opinion } }
 	}
 }
 

@@ -4,64 +4,64 @@
 
 corp_large_opinion_boost = {
   random_list = {
-    1 = { change_variable = { which = opinion = value = 76 } }
-    1 = { change_variable = { which = opinion = value = 62 } }
-    1 = { change_variable = { which = opinion = value = 51 } }
-    1 = { change_variable = { which = opinion = value = 43 } }
+    1 = { change_variable = { which = global_corp_opinion value = 76 } }
+    1 = { change_variable = { which = global_corp_opinion value = 62 } }
+    1 = { change_variable = { which = global_corp_opinion value = 51 } }
+    1 = { change_variable = { which = global_corp_opinion value = 43 } }
   }
 }
 
 corp_medium_opinion_boost = {
   random_list = {
-    1 = { change_variable = { which = opinion = value = 49 } }
-    1 = { change_variable = { which = opinion = value = 45 } }
-    1 = { change_variable = { which = opinion = value = 35 } }
-    1 = { change_variable = { which = opinion = value = 23 } }
+    1 = { change_variable = { which = global_corp_opinion value = 49 } }
+    1 = { change_variable = { which = global_corp_opinion value = 45 } }
+    1 = { change_variable = { which = global_corp_opinion value = 35 } }
+    1 = { change_variable = { which = global_corp_opinion value = 23 } }
   }
 }
 
 corp_small_opinion_boost = {
   random_list = {
-    1 = { change_variable = { which = opinion = value = 29 } }
-    1 = { change_variable = { which = opinion = value = 21 } }
-    1 = { change_variable = { which = opinion = value = 12 } }
-    1 = { change_variable = { which = opinion = value = 8 } }
+    1 = { change_variable = { which = global_corp_opinion value = 29 } }
+    1 = { change_variable = { which = global_corp_opinion value = 21 } }
+    1 = { change_variable = { which = global_corp_opinion value = 12 } }
+    1 = { change_variable = { which = global_corp_opinion value = 8 } }
   }
 }
 
 corp_balanced_opinion = {
   random_list = {
-    1 = { change_variable = { which = opinion = value = 10 } }
-    1 = { change_variable = { which = opinion = value = 5 } }
-    1 = { change_variable = { which = opinion = value = 0 } }
-    1 = { change_variable = { which = opinion = value = -5 } }
-    1 = { change_variable = { which = opinion = value = -10 } }
+    1 = { change_variable = { which = global_corp_opinion value = 10 } }
+    1 = { change_variable = { which = global_corp_opinion value = 5 } }
+    1 = { change_variable = { which = global_corp_opinion value = 0 } }
+    1 = { change_variable = { which = global_corp_opinion value = -5 } }
+    1 = { change_variable = { which = global_corp_opinion value = -10 } }
   }
 }
 
 corp_small_opinion_penalty = {
   random_list = {
-    1 = { subtract_variable = { which = opinion = value = 8 } }
-    1 = { subtract_variable = { which = opinion = value = 12 } }
-    1 = { subtract_variable = { which = opinion = value = 21 } }
-    1 = { subtract_variable = { which = opinion = value = 29 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 8 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 12 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 21 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 29 } }
   }
 }
 
 corp_medium_opinion_penalty = {
   random_list = {
-    1 = { subtract_variable = { which = opinion = value = 23 } }
-    1 = { subtract_variable = { which = opinion = value = 35 } }
-    1 = { subtract_variable = { which = opinion = value = 45 } }
-    1 = { subtract_variable = { which = opinion = value = 49 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 23 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 35 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 45 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 49 } }
   }
 }
 
 corp_large_opinion_penalty = {
   random_list = {
-    1 = { subtract_variable = { which = opinion = value = 76 } }
-    1 = { subtract_variable = { which = opinion = value = 62 } }
-    1 = { subtract_variable = { which = opinion = value = 51 } }
-    1 = { subtract_variable = { which = opinion = value = 43 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 76 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 62 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 51 } }
+    1 = { subtract_variable = { which = global_corp_opinion value = 43 } }
   }
 }

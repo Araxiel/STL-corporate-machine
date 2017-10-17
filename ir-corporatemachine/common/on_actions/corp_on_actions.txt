@@ -16,7 +16,14 @@ on_leader_spawned = {
 	events = {
 	}
 	random_events = {
-		5 = ""
+		5 = 0
 		90 = corp_leader.1
+	}
+}
+
+# No scope, like on_game_start
+on_yearly_pulse = {
+	events = {
+		corp_general.1
 	}
 }

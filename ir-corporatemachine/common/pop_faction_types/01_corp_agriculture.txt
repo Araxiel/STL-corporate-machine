@@ -281,54 +281,104 @@ corp_agricorp = {
 		}
 	}
 
-	# gift given
+	# favour
 	demand = {
-		title = "FAVOUR_GIVEN"
-		unfulfilled_title = "NO_FAVOUR"
-		desc = "GIFT_GIVEN_DESCRIPTION"
+		title = "FAVOURABLE_RELATIONSHIP"
+		unfulfilled_title = "NOT_ENOUGH_FAVOUR"
+		desc = "FAVOURABLE_RELATIONSHIP_DESCRIPTION"
 
-		fulfilled_effect = 6
+		fulfilled_effect = 5
 
 		potential = {
-			has_country_flag = corp_gift_given
+			owner = { check_variable = { which = agricorp.opinion value > 10 } }
 		}
 
 		trigger = {
-			has_pop_faction_flag = corp_gift_given
+			owner = { check_variable = { which = agricorp.opinion value > 20 } }
 		}
 	}
 
-	# demands accepted
+	# favour 2
 	demand = {
-		title = "DEMANDS_ACCEPTED"
-		unfulfilled_title = "DEMANDS_DENIED"
-		desc = "DEMANDS_DENIED_DESCRIPTION"
+		title = "FRIENDLY_RELATIONSHIP"
+		unfulfilled_title = "NOT_ENOUGH_FAVOUR"
+		desc = "FRIENDLY_RELATIONSHIP_DESCRIPTION"
 
-		unfulfilled_effect = -8
+		fulfilled_effect = 8
 
 		potential = {
-			has_pop_faction_flag = demand_denied
+			owner = { check_variable = { which = agricorp.opinion value > 20 } }
 		}
 
 		trigger = {
-			NOT = { has_pop_faction_flag = demand_denied }
+			owner = { check_variable = { which = agricorp.opinion value > 40 } }
 		}
 	}
 
-	# corp angered
+	# favour 3
+	demand = {
+		title = "TRUSTING_RELATIONSHIP"
+		unfulfilled_title = "NOT_ENOUGH_FAVOUR"
+		desc = "TRUSTING_RELATIONSHIP_DESCRIPTION"
+
+		fulfilled_effect = 9
+
+		potential = {
+			owner = { check_variable = { which = agricorp.opinion value > 40 } }
+		}
+
+		trigger = {
+			owner = { check_variable = { which = agricorp.opinion value > 70 } }
+		}
+	}
+
+	# anger1
+	demand = {
+		title = "CORP_NOT_SLIGHTED"
+		unfulfilled_title = "CORP_SLIGHTED"
+		desc = "CORP_SLIGHTED_DESCRIPTION"
+
+		unfulfilled_effect = -7
+
+		potential = {
+			owner = { check_variable = { which = agricorp.opinion value < -10 } }
+		}
+
+		trigger = {
+			owner = { check_variable = { which = agricorp.opinion value < -20 } }
+		}
+	}
+
+	# anger2
 	demand = {
 		title = "CORP_NOT_ANGERED"
 		unfulfilled_title = "CORP_ANGERED"
 		desc = "CORP_ANGERED_DESCRIPTION"
 
-		unfulfilled_effect = -18
+		unfulfilled_effect = -9
 
 		potential = {
-			has_pop_faction_flag = corp_angered
+			owner = { check_variable = { which = agricorp.opinion value < -20 } }
 		}
 
 		trigger = {
-			NOT = { has_pop_faction_flag = corp_angered }
+			owner = { check_variable = { which = agricorp.opinion value < -40 } }
+		}
+	}
+	# anger3
+	demand = {
+		title = "CORP_NOT_FURIOUS"
+		unfulfilled_title = "CORP_FURIOUS"
+		desc = "CORP_FURIOUS_DESCRIPTION"
+
+		unfulfilled_effect = -11
+
+		potential = {
+			owner = { check_variable = { which = agricorp.opinion value < -40 } }
+		}
+
+		trigger = {
+			owner = { check_variable = { which = agricorp.opinion value < -60 } }
 		}
 	}
 

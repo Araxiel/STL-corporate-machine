@@ -11,7 +11,17 @@ agricorp.2.title: "§H[Root.GetName]§! Plans New Farm"
 agricorp.2.desc:  "§H[Root.GetName]§! has approached our government with a request to buy a large area on §Y[Root.new_agricorp_building_planet.GetName]§!.\n\nWe can approve of the transaction, or we can even give them the land for free. Alternatively, we can also deny their request, but they won't like it."
 
 building_corp_agriculture_hq1: "Agricorp Headquarters"
+building_corp_agriculture_hq1_desc: "WIP"
 building_corp_agriculture_hq2: "Agricorp Galactic Headquarters"
+building_corp_agriculture_hq2_desc: "WIP"
+building_corp_agriculture_hq_branch: "Agricorp Branch"
+building_corp_agriculture_hq_branch_desc: "WIP"
+building_corp_agriculture_farm1: "Agricorp Farm I"
+building_corp_agriculture_farm1_desc: "WIP"
+building_corp_agriculture_farm2: "Agricorp Farm II"
+building_corp_agriculture_farm2_desc: "WIP"
+building_corp_agriculture_farm3: "Agricorp Farm III"
+building_corp_agriculture_farm3_desc: "WIP"
 
 #####
 ## Generic
