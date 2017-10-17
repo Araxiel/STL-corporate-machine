@@ -3,18 +3,62 @@
 # by Araxiel
 ###############################
 
+### Corporate Leaders
+namespace = corp_leader
 
+# Gives a chance that corporate goon
+country_event = {
+	id = corp_leader.1
+	is_triggered_only = yes
+	hide_window = yes
+
+ #gods; bless this mess
+	immediate = {
+		from = {
+			random_list = {
+				1 = {
+					modifier = {
+						factor = 0
+						ROOT =  { NOT = { count_pop_factions = { limit = { is_pop_faction_type = corp_agricorp } count < 0 } } }
+					}
+					add_trait = leader_trait_corp_agricorp
+				}
+			}
+		}
+	}
+}
+
+### General Corp
+namespace = general_corp
+
+country_event = {
+	id = general_corp.1
+	is_triggered_only = yes
+	hide_window = yes
+
+ #gods; bless this mess
+	immediate = {
+		every_country = {
+			every_pop_faction = {
+
+			}
+		}
+	}
+}
+
+######## Agricorp
 namespace = agricorp
 
 # agricorp.1
 #Agricorp Creation
-country_event = {
+pop_faction_event = {
 	id = agricorp.1
 	title = agricorp.1.title
 	desc = "agricorp.1.desc"
 
 	picture = GFX_evt_megafarm
 	show_sound = event_factions
+	location = event_target:new_agricorp_planet
 
 	is_triggered_only = yes
 
@@ -25,16 +69,55 @@ country_event = {
 	}
 
 	immediate = {
-		FROM = {
-			save_event_target_as = new_agricorp
+		owner = {
+			random_owned_planet = {
+				limit = {
+					free_building_tiles < 4
+					is_homeworld = no
+					any_tile = {
+						has_blocker = no
+						OR = {
+							has_building = no
+							has_building = building_biolab_1
+							has_building = building_biolab_2
+							has_building = building_biolab_3
+							has_building = building_biolab_4
+							has_building = building_basic_farm
+							has_building = building_hydroponics_farm_1
+							has_building = building_hydroponics_farm_2
+							has_building = building_hydroponics_farm_3
+							has_building = building_hydroponics_farm_4
+							has_building = building_hydroponics_farm_5
+						}
+					}
+				}
+				save_event_target_as = new_agricorp_planet
+			}
 		}
 	}
 
 	option = {
 		name = OK
-		owner = {
-			random_owned_planet = {
-				random_tile = {
+		event_target:new_agricorp_planet = {
+			random_tile = {
+				limit = {
+					has_blocker = no
+					OR = {
+						has_building = no
+						has_building = building_biolab_1
+						has_building = building_biolab_2
+						has_building = building_biolab_3
+						has_building = building_biolab_4
+						has_building = building_basic_farm
+						has_building = building_hydroponics_farm_1
+						has_building = building_hydroponics_farm_2
+						has_building = building_hydroponics_farm_3
+						has_building = building_hydroponics_farm_4
+						has_building = building_hydroponics_farm_5
+					}
+				}
+				set_building = building_corp_agriculture_hq1
+				random_neighboring_tile  = {
 					limit = {
 						has_blocker = no
 						OR = {
@@ -51,40 +134,23 @@ country_event = {
 							has_building = building_hydroponics_farm_5
 						}
 					}
-					set_building = building_corp_agriculture_hq1
-					random_neighboring_tile  = {
-						limit = {
-							has_blocker = no
-							OR = {
-								has_building = no
-								has_building = building_biolab_1
-								has_building = building_biolab_2
-								has_building = building_biolab_3
-								has_building = building_biolab_4
-								has_building = building_basic_farm
-								has_building = building_hydroponics_farm_1
-								has_building = building_hydroponics_farm_2
-								has_building = building_hydroponics_farm_3
-								has_building = building_hydroponics_farm_4
-								has_building = building_hydroponics_farm_5
-							}
-						}
-						add_building_construction = building_corp_agriculture_farm1
-					}
+					add_building_construction = building_corp_agriculture_farm1
 				}
 			}
-			hidden_effect = {
-				owner = {
-					every_owned_planet = {
-						every_owned_pop = {
-							force_faction_evaluation = yes
-						}
+		}
+		hidden_effect = {
+			set_timed_pop_faction_flag = { flag = cant_expand months = 6 }
+			owner = {
+				set_country_flag = first_corp_made
+				every_owned_planet = {
+					every_owned_pop = {
+						force_faction_evaluation = yes
 					}
 				}
 			}
 		}
+		set_variable = { which = agricorp.opinion value = 0 }
 	}
-
 }
 
 # agricorp.2
@@ -100,12 +166,14 @@ pop_faction_event = {
 
 	trigger = {
 		is_pop_faction_type = corp_agricorp
+		NOT = { has_pop_faction_flag = cant_expand }
 	}
 
 	immediate = {
 		owner = {
 			random_owned_planet = {
 				limit = {
+					is_homeworld = no
 					any_tile = {
 						has_blocker = no
 						OR = {
@@ -128,15 +196,15 @@ pop_faction_event = {
 	}
 
 	mean_time_to_happen = {
-		years = 10
+		years = 5
 	}
 
 	after = {
 	}
 
-	option = { # gift it
+	# gift it
+	option = {
 		name = GIVE_IT_TO_CORP
-
 			event_target:new_agricorp_building_planet = {
 				random_tile = {
 					limit = {
@@ -157,10 +225,16 @@ pop_faction_event = {
 					add_building_construction = building_corp_agriculture_farm1
 				}
 			}
-			FROM = { set_timed_pop_flag = { flag = corp_gift_given months = 6 } }
+		random_list = {
+			1 = { change_variable = { which = opinion = value = 8 } }
+			1 = { change_variable = { which = opinion = value = 10 } }
+			1 = { change_variable = { which = opinion = value = 13 } }
+			1 = { change_variable = { which = opinion = value = 16 } }
+		}
 	}
 
-	option = { # sell it to them
+ 	# sell it to them
+	option = {
 		name = SELL_IT_TO_CORP
 		owner = {
 			random_owned_planet = {
@@ -187,12 +261,12 @@ pop_faction_event = {
 		}
 	}
 
-	option = { #deny request
+	# deny request
+	option = {
 		name = DENY_CORP
-		FROM = { set_timed_pop_flag = { flag = demand_denied months = 7 } }
+		ROOT = { set_timed_pop_flag = { flag = demand_denied months = 7 } }
 	}
 }
-
 
 ##### Debugging Events
 
@@ -268,6 +342,27 @@ country_event = {
 			every_owned_pop = {
 				set_pop_faction = corp_agricorp
 			}
+		}
+	}
+}
+
+country_event = {
+	id = corp_debug.3
+	title = corp_debug.3.title
+	desc = "corp_debug.3.desc"
+
+	picture = GFX_evt_galactic_senate
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	option = {
+		name = OK
+		random_pop_faction = {
+			limit = { is_pop_faction_type = corp_agricorp }
+			pop_faction_event = { id = agricorp.2 days = 1 }
 		}
 	}
 }

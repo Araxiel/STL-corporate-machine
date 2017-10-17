@@ -1,6 +1,5 @@
 building_corp_agriculture_hq1 = {
 	is_listed = no
-	icon = "building_probability_engine"
 
 	cost = {}
 	required_resources = {}
@@ -38,7 +37,6 @@ building_corp_agriculture_hq1 = {
 
 building_corp_agriculture_hq2 = {
 	is_listed = no
-	icon = "building_probability_engine"
 
 	cost = {}
 	required_resources = {}

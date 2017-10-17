@@ -13,11 +13,4 @@ spriteTypes = {
 		alwaystransparent = yes
 	}
 
-	spriteType = {
-		name = "GFX_evt_megafarm"
-		texturefile = "gfx/event_pictures/megafarm.dds"
-		masking_texture = "gfx/interface/icons/buildings/agricorp_hq1.dds"
-		alwaystransparent = yes
-	}
-
 }

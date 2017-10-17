@@ -41,6 +41,7 @@ corporations_regulation = {
 
 	potential = {
 		has_policy_flag = corporations_allowed
+		has_country_flag = first_corp_made
 	}
 
 	option = {
@@ -68,7 +69,6 @@ corporations_regulation = {
 		modifier = {
 			country_trade_attractiveness = 0.10
 			tile_resource_energy_mult = 0.10
-			tooltip  = "laissez_faire_consequence_tooltip"
 		}
 
 	}
@@ -87,7 +87,6 @@ corporations_regulation = {
 		modifier = {
 			country_trade_attractiveness = -0.10
 			pop_happiness = 0.05
-			description = "heavily_regulated_corp_consequence_tooltip"
 		}
 	}
 
@@ -97,6 +96,7 @@ corporations_lobbying = {
 
 	potential = {
 		has_policy_flag = corporations_allowed
+		has_country_flag = first_corp_made
 	}
 
 	option = {
@@ -106,7 +106,6 @@ corporations_lobbying = {
 			corporations_can_lobby
 		}
 
-		description = "corporations_can_lobby_consequence_tooltip"
 		modifier = {
 		}
 
@@ -125,7 +124,6 @@ corporations_lobbying = {
 			NOT = { has_authority = auth_imperial }
 		}
 
-		tooltip = "corporations_own_politics_consequence_tooltip"
 		modifier = {
 			pop_happiness = -0.2
 		}
@@ -145,9 +143,6 @@ corporations_lobbying = {
 
 		modifier = {
 			pop_happiness = 0.05
-			custom_tooltip = {
-				text = corporations_money_out_of_politics_consequence_tooltip
-			}
 		}
 	}
 

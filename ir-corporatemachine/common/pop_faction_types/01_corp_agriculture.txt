@@ -12,6 +12,11 @@ corp_agricorp = {
 	is_potential = {
 		NOT = { hates_corporations = yes }
 		corporations_allowed = yes
+		years_passed > 2
+		count_owned_pops = {
+			limit = {	is_enslaved = no }
+			count > 10
+		}
 	}
 
 	parameters = {
@@ -64,14 +69,14 @@ corp_agricorp = {
 		}
 
 		modifier = {
-			factor = 1.5
+			factor = 1.15
 			owner = {
 				has_policy_flag  = corporations_laissez_faire
 			}
 		}
 
 		modifier = {
-			factor = 1.5
+			factor = 1.25
 			planet = {
 				has_edict = corp_agricorp_boost
 			}
@@ -82,13 +87,14 @@ corp_agricorp = {
 			planet = {
 				OR = {
 					has_building = building_corp_agriculture_hq1
+					has_building = building_corp_agriculture_hq2
 					has_building = building_corp_agriculture_hq_branch
 				}
 			}
 		}
 
 		modifier = {
-			factor = 1.6
+			factor = 1.25
 			tile = {
 				OR = {
 					has_building = building_corp_agriculture_hq1
@@ -101,10 +107,13 @@ corp_agricorp = {
 		}
 
 		modifier = {
-			factor = 1.2
+			factor = 1.1
 			parameter:empire = {
 				any_owned_planet  = {
-					has_building = building_corp_agriculture_hq1
+					OR = {
+						has_building = building_corp_agriculture_hq1
+						has_building = building_corp_agriculture_hq2
+					}
 				}
 			}
 		}
@@ -149,7 +158,7 @@ corp_agricorp = {
 		}
 
 		modifier = {
-			factor = 1.3
+			factor = 1.6
 			has_trait = leader_trait_corp_agricorp
 		}
 
@@ -192,6 +201,7 @@ corp_agricorp = {
 
 		potential = {
 			exists = owner
+			owner = { has_policy_flag = corporations_heavily_regulated }
 		}
 
 		trigger = {
@@ -273,14 +283,14 @@ corp_agricorp = {
 
 	# gift given
 	demand = {
-		title = "GIFT_GIVEN"
-		unfulfilled_title = "NO_GIFT_GIVEN"
+		title = "FAVOUR_GIVEN"
+		unfulfilled_title = "NO_FAVOUR"
 		desc = "GIFT_GIVEN_DESCRIPTION"
 
-		fulfilled_effect = 7
+		fulfilled_effect = 6
 
 		potential = {
-			has_pop_faction_flag = corp_gift_given
+			has_country_flag = corp_gift_given
 		}
 
 		trigger = {
@@ -353,7 +363,7 @@ corp_agricorp = {
 	}
 
 	on_create = {
-		country_event = { id = agricorp.1 }
+		pop_faction_event = { id = agricorp.1 }
 	}
 
 	on_destroy = {

@@ -5,14 +5,16 @@ leader_trait_corp_agricorp = {
 	cost = 1
 	modification = no
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_iron_fist.dds"
+
 	modifier = {
-		slave_mineral_output = 0.1
-		slave_food_output = 0.1
+		tile_resource_food_mult = 0.10
+		tile_resource_society_research_mult = 0.10
 	}
+
 	leader_potential_add = {
-		from = { allows_slavery = yes }
+		from = { count_pop_factions = { limit = { is_pop_faction_type = corp_agricorp } count < 0 } }
 		NOT = { from = { has_authority = "auth_machine_intelligence" } }
 	}
 	leader_trait = yes
-	leader_class = { governor }
+	leader_class = { governor scientist }
 }
