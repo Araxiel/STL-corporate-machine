@@ -1,0 +1,13 @@
+NDefines.NGameplay.POP_CURRENT_FACTION_LAST_MEMBER_WEIGHT		= 200.0	# Weight for current faction is multiplied by this much for pops when they are the last faction member
+
+
+#POP_DISENFRANCHISE_EFFECT 					= 0.25 	# How much does a disenfrachised Pop contribute to faction support (where Pop with the vote = 1)
+#POP_CHANGE_FACTION_CHANCE					= 0.02	# Once every month a pop has X chance to change faction but only if the pop wants to
+#POP_CURRENT_FACTION_WEIGHT					= 1.25	# Weight for current faction is multiplied by this much for pops
+#POP_CURRENT_FACTION_LAST_MEMBER_WEIGHT		= 100.0	# Weight for current faction is multiplied by this much for pops when they are the last faction member
+#POP_FACTION_HAPPINESS_FOR_CONTENT			= 0.4	# Below this level of happines a faction will start causing trouble
+#POP_FACTION_MIN_HAPPINESS_FOR_INFLUENCE		= 0.6	# Above this level of happiness a faction provides +influence
+#POP_FACTION_INFLUENCE_SCALING				= 2	# Base influence gained from a faction being at 100% happiness and 100% support
+#POP_FACTION_SIZE_ATTRACTION					= 1	# How much does the current size of membership affect attraction (higher number = lower attraction when large)
+#POP_FACTION_MIN_POTENTIAL_MEMBERS			= 5 # If a faction has less potential members than this, do not form
+#POP_FACTION_CREATION_COOLDOWN				= 180 # Wait this many days after creating a faction to create another one (not applied to hidden factions)

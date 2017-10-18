@@ -13,3 +13,12 @@ hates_corporations = {
 corporations_allowed = {
   has_policy_flag = corporations_allowed
 }
+
+can_join_factions_basic_triggers = {
+  is_enslaved = no
+  is_shackled_robot = no
+  is_being_purged = no
+  has_culture_shock = no
+  NOT = { has_trait = trait_nerve_stapled }
+  NOT = { hates_corporations = yes }
+}

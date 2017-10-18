@@ -1,14 +1,14 @@
 ##############################
-# Agricultural Corporation
+# Materialist Corporation
 #	by Araxiel
 ##############################
 
 corp_agricorp = {
 	election_header = "GFX_faction_header_green"
-	guiding_ethic = ethic_pacifist
+	guiding_ethic = ethic_materialist
 
 	unique = yes
-	support_multiplier = 1.4
+	support_multiplier = 1.2
 
 	## Add: No Fallen?
 

@@ -12,7 +12,7 @@ leader_trait_corp_agricorp = {
 	}
 
 	leader_potential_add = {
-		from = { count_pop_factions = { limit = { is_pop_faction_type = corp_agricorp } count < 0 } }
+		from = { has_faction = corp_agricorp }
 		NOT = { from = { has_authority = "auth_machine_intelligence" } }
 	}
 	leader_trait = yes

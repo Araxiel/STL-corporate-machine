@@ -19,7 +19,7 @@ country_event = {
 				1 = {
 					modifier = {
 						factor = 0
-						ROOT =  { NOT = { count_pop_factions = { limit = { is_pop_faction_type = corp_agricorp } count < 0 } } }
+						ROOT =  { has_faction = corp_agricorp }
 					}
 					add_trait = leader_trait_corp_agricorp
 				}
