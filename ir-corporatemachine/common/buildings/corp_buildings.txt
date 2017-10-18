@@ -30,9 +30,8 @@ building_corp_agriculture_hq1 = {
   }
 
   required_resources = {
-		unity = 0.25
+		unity = 0.5
 	}
-
 }
 
 building_corp_agriculture_hq2 = {
@@ -67,7 +66,7 @@ building_corp_agriculture_hq2 = {
   }
 
   required_resources = {
-    unity = 0.25
+    unity = 0.75
   }
 }
 
@@ -83,6 +82,10 @@ building_corp_agriculture_hq_branch = {
 
 	upgrades = {
 	}
+
+	required_resources = {
+    unity = 0.25
+  }
 
 	ai_replace = no
 	event_building = yes

@@ -1,5 +1,6 @@
 ##############################
 # Agricultural Corporation
+#	by Araxiel
 ##############################
 
 corp_agricorp = {
@@ -10,12 +11,11 @@ corp_agricorp = {
 	support_multiplier = 1.5
 
 	is_potential = {
-		NOT = { hates_corporations = yes }
-		corporations_allowed = yes
+		has_policy_flag = corporations_allowed
 		years_passed > 2
 		count_owned_pops = {
 			limit = {	is_enslaved = no }
-			count > 10
+			count > 15
 		}
 	}
 
@@ -35,12 +35,15 @@ corp_agricorp = {
 		has_culture_shock = no
 		NOT = { has_trait = trait_nerve_stapled }
 		NOT = { hates_corporations = yes }
-		OR = { # produces food or HQ on planet
+		NOT = { has_ethic = ethic_militarist }
+		NOT = { has_ethic = ethic_fanatic_militarist }
+		OR = {
 			pop_produces_resource = { type = food amount > 1 }
-			planet = { # checks if HQ or
+			planet = {
 				any_tile = {
 					OR = {
 						has_building = building_corp_agriculture_hq1
+						has_building = building_corp_agriculture_hq2
 						has_building = building_corp_agriculture_hq_branch
 					}
 				}
@@ -49,7 +52,7 @@ corp_agricorp = {
 	}
 
 	attraction = {
-		base = 100
+		base = 125
 
 		modifier = {
 			factor = 1.25
@@ -69,7 +72,7 @@ corp_agricorp = {
 		}
 
 		modifier = {
-			factor = 1.15
+			factor = 1.1
 			owner = {
 				has_policy_flag  = corporations_laissez_faire
 			}
@@ -83,7 +86,7 @@ corp_agricorp = {
 		}
 
 		modifier = {
-			factor = 1.25
+			factor = 1.2
 			planet = {
 				OR = {
 					has_building = building_corp_agriculture_hq1
@@ -94,7 +97,7 @@ corp_agricorp = {
 		}
 
 		modifier = {
-			factor = 1.25
+			factor = 2
 			tile = {
 				OR = {
 					has_building = building_corp_agriculture_hq1
@@ -107,8 +110,13 @@ corp_agricorp = {
 		}
 
 		modifier = {
+			factor = 1.25
+			pop_produces_resource = { type = food amount > 2 }
+		}
+
+		modifier = {
 			factor = 1.1
-			parameter:empire = {
+			owner = {
 				any_owned_planet  = {
 					OR = {
 						has_building = building_corp_agriculture_hq1
@@ -127,18 +135,15 @@ corp_agricorp = {
 						NOT = { has_building = building_corp_agriculture_hq1 }
 					}
 					tile = {
+						NOT = { has_building = building_corp_agriculture_hq2 }
+					}
+					tile = {
 						NOT = { has_building = building_corp_agriculture_hq_branch }
 					}
 				}
 			}
 		}
 
-		modifier = {
-			factor = 0.1
-			parameter:empire = {
-				corporations_allowed = yes
-			}
-		}
 	}
 
 	leader = {
