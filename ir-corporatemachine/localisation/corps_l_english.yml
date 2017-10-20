@@ -1,33 +1,52 @@
 ﻿l_english:
 ####################################
 
-pft_corp_agricorp: "Agricultural Corporation"
-pft_corp_agricorp_desc: "This massive megacorporation works in the agricultural sector; it operates massive farms and delivers food across the entire nation and beyond. Agricultural companies are in some ways the least difficult to deal with and at the same time possibly the most important sector."
+pft_corp_agriculture: "Agricultural Corporation"
+pft_corp_agriculture_desc: "This massive megacorporation works in the agricultural sector; it operates massive farms and delivers food across the entire nation and beyond. Agricultural companies are in some ways the least difficult to deal with and at the same time possibly the most important sector."
 
-agricorp.1.title: "Agricultural Megacorporation Formed"
-agricorp.1.desc: "It has come to our attention that §H[Root.GetName]§!, one of our nation's agricultural companies, has grown to impressive size. They now operate across multiple planets and engage a small army of employees.\n\nWhile the economy can be a fickle mistress, it does seem that §H[Root.GetName]§! is going to continue expanding. Having so much of the agricultural industry be controlled by one corporation can cause problems, but can also be a boon if we can get them on the government's side.\n\nThey erected their new Corporate HQ on §Y[new_agricorp_planet.GetName]§!."
+pft_corp_mining: "Mining Corporation"
+pft_corp_mining_desc: "This massive megacorporation works in the mining sector; it operates massive mines and delivers minerals and metals across the entire nation and beyond. Mining Corporations just want one thing; more mines. They constantly look for new deposits to exploit."
 
-agricorp.2.title: "§H[Root.GetName]§! Plans New Farm"
-agricorp.2.desc:  "§H[Root.GetName]§! has approached our government with a request to buy a large area on §Y[new_agricorp_building_planet.GetName]§!.\n\nWe can approve of the transaction, or we can even give them the land for free. Alternatively, we can also deny their request, but they won't like it."
+agricultural_corp.1.title: "Agricultural Megacorporation Formed"
+agricultural_corp.1.desc: "It has come to our attention that §H[Root.GetName]§!, one of our nation's agricultural companies, has grown to impressive size. They now operate across multiple planets and engage a small army of employees.\n\nThis corporation will try to influence politics, especially if they feel red-tape and the government get in the way of profits. An angry Megacorporation will be a source of trouble, but one that approves of the government's actions could prove useful.\n\n[@OWNER_agricultural_corp_home.GetName]"
 
-building_corp_agriculture_hq1: "Agricorp Headquarters"
+mining_corp.1.title: "Mining Megacorporation Formed"
+mining_corp.1.desc: "It has come to our attention that §H[Root.GetName]§!, one of our nation's largest mining companies, has grown to impressive size. They now operate across multiple planets and engage a small army of employees.\n\nThis corporation will try to influence politics, especially if they feel red-tape and the government get in the way of profits. An angry Megacorporation will be a source of trouble, but one that approves of the government's actions could prove useful."
+
+corp_general.2.title: "Megacorp Builds HQ"
+corp_general.2.desc: "§H[Root.GetName]§! is in the process of building a large company headquarters on §Y[new_corp_HQ_planet.GetName]§!.\n\nThis will cement their hold on that planet and make the coordination of their business empire under §H[Root.Leader.GetTitle] [Root.Leader.GetName]§! easier. Expect more acquisitions by them in the near future."
+
+building_corp_agriculture_hq1: "Agricultural Corp Headquarters"
 building_corp_agriculture_hq1_desc: "WIP"
-building_corp_agriculture_hq2: "Agricorp Galactic Headquarters"
+building_corp_agriculture_hq2: "Agricultural Corp Galactic Headquarters"
 building_corp_agriculture_hq2_desc: "WIP"
-building_corp_agriculture_hq_branch: "Agricorp Branch"
+building_corp_agriculture_hq_branch: "Agricultural Branch"
 building_corp_agriculture_hq_branch_desc: "WIP"
-building_corp_agriculture_farm1: "Agricorp Farm I"
-building_corp_agriculture_farm1_desc: "WIP"
-building_corp_agriculture_farm2: "Agricorp Farm II"
-building_corp_agriculture_farm2_desc: "WIP"
-building_corp_agriculture_farm3: "Agricorp Farm III"
-building_corp_agriculture_farm3_desc: "WIP"
+
+building_corp_mining_hq1: "Mining Corp Headquarters"
+building_corp_mining_hq1_desc: "WIP"
+building_corp_mining_hq2: "Mining Corp Galactic Headquarters"
+building_corp_mining_hq2_desc: "WIP"
+building_corp_mining_hq_branch: "Mining Corp Branch"
+building_corp_mining_hq_branch_desc: "WIP"
+
+edict_agriculture_corp_boost: "Attract Agricultural Corp Investors"
+edict_agriculture_corp_boost_desc: "Increases the attractiveness of this planet for Agricultural Megacorporations"
+agriculture_corp_boost_effect: "§G+25%§! Agricultural Corp Attractiveness"
+edict_mining_corp_boost: "Attract Mining Corp Investors"
+edict_mining_corp_boost_desc: "Increases the attractiveness of this planet for Agricultural Megacorporations"
+mining_corp_boost_effect: "§G+25%§! Mining Corp Attractiveness"
 
 #####
 ## Generic
 GIVE_IT_TO_CORP: "Let's show them our generosity."
 SELL_IT_TO_CORP: "We have a deal."
 DENY_CORP: "There is no deal."
+
+HQ_buildings_build_cost_mult: "Corp HQ Build Cost"
+HQ_buildings_construction_speed_mult: "Corp HQ Construction Speed"
+HQ_branch_buildings_build_cost_mult: "Corp Branch Build Cost"
+HQ_branch_buildings_construction_speed_mult: "Corp Branch Construction Speed"
 
 policy_corporations_allowance: "Megacorporation Legality"
 policy_corporations_allowance_desc: "Should Megacorporations be allowed to form and usher in prosperity and profit, or are these massive, monolithic behemoths a danger to all?\n\n"
@@ -55,3 +74,8 @@ corporations_own_politics: "Corporations Own Politics"
 corporations_own_politics_desc: "The government is simply an extension of corporations; they know what is best for prosperity and progress, and politics is just red tape getting in the way of that, holding everyone back.\n\nAllowing Megacorporation to directly take charge of politics will have drastic consequences in one way or another. One thing is for sure; the corporations will not relinquish their powers once enacted.\n\nCorporations will be much more effective, but will also take charge.\n\nOnce enacted, §Rthere is no turning back§!.\n\n"
 corporations_money_out_of_politics: "Money Out Of Politics"
 corporations_money_out_of_politics_desc: "Try to stop corruption by disallowing corporations to lobby or donate to politicians.\n\n"
+
+corporations_heavily_regulated_name: "Heavy Regulations"
+corporations_can_lobby_name: "Lobbying Allowed"
+corporations_own_politics_name: "Corporations own Politics"
+corporations_money_out_of_politics_name: "Money out of Politics"

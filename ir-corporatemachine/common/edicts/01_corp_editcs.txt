@@ -3,8 +3,43 @@
 @standardEdictDuration = 3600
 
 planet_edict = {
-	name = "corp_agricorp_boost"
+	name = "agriculture_corp_boost"
 	influence_cost = @standardEdictCost
+
+	text = "agriculture_corp_boost_effect"
+	modifier = {
+
+	}
+
+	potential = {
+		owner = {
+			NOT = {
+				has_authority = auth_hive_mind
+				has_authority = auth_machine_intelligence
+			}
+      corporations_allowed = yes
+		}
+	}
+
+	length = @standardEdictDuration
+
+	allow = {
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 10
+		}
+	}
+}
+
+planet_edict = {
+	name = "mining_corp_boost"
+	influence_cost = @standardEdictCost
+
+	tooltip = "mining_corp_boost_effect"
 	modifier = {
 
 	}

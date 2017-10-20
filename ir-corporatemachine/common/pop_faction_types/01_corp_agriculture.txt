@@ -3,17 +3,18 @@
 #	by Araxiel
 ##############################
 
-corp_agricorp = {
+corp_agriculture = {
 	election_header = "GFX_faction_header_green"
 	guiding_ethic = ethic_pacifist
 
 	unique = yes
-	support_multiplier = 1.4
+	support_multiplier = 0.5
 
 	## Add: No Fallen?
 
 	is_potential = {
 		has_policy_flag = corporations_allowed
+		NOT = { has_country_flag = corp_empire }
 	}
 
 	parameters = {
@@ -26,7 +27,7 @@ corp_agricorp = {
 	}
 
 	can_join_faction = {
-		can_join_factions_basic_triggers = yes
+		can_join_corp_basic_triggers = yes
 		NOT = { has_ethic = ethic_militarist }
 		NOT = { has_ethic = ethic_fanatic_militarist }
 		OR = {
@@ -47,21 +48,26 @@ corp_agricorp = {
 		base = 125
 
 		modifier = {
-			factor = 1.1
+			factor = 1.15
 			owner = {
 				has_policy_flag  = corporations_laissez_faire
 			}
 		}
 
 		modifier = {
-			factor = 1.20
+			factor = 1.15
+			years_passed < 10
+		}
+
+		modifier = {
+			factor = 1.25
 			planet = {
-				has_edict = corp_agricorp_boost
+				has_edict = agriculture_corp_boost
 			}
 		}
 
 		modifier = {
-			factor = 1.1
+			factor = 1.2
 			planet = {
 				OR = {
 					has_building = building_corp_agriculture_hq1
@@ -78,9 +84,6 @@ corp_agricorp = {
 					has_building = building_corp_agriculture_hq1
 					has_building = building_corp_agriculture_hq2
 					has_building = building_corp_agriculture_hq_branch
-					has_building = building_corp_agriculture_farm1
-					has_building = building_corp_agriculture_farm2
-					has_building = building_corp_agriculture_farm3
 				}
 			}
 		}
@@ -88,6 +91,10 @@ corp_agricorp = {
 		modifier = {
 			factor = 1.1
 			pop_produces_resource = { type = food amount > 2 }
+		}
+		modifier = {
+			factor = 1.2
+			pop_produces_resource = { type = food amount > 3 }
 		}
 
 		modifier = {
@@ -141,7 +148,7 @@ corp_agricorp = {
 
 		modifier = {
 			factor = 1.6
-			has_trait = leader_trait_corp_agricorp
+			has_trait = leader_trait_corp_agriculture
 		}
 
 		modifier = {
@@ -272,11 +279,11 @@ corp_agricorp = {
 		fulfilled_effect = 5
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value > 10 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 10 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value > 20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 20 } }
 		}
 	}
 
@@ -289,11 +296,11 @@ corp_agricorp = {
 		fulfilled_effect = 8
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value > 20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 20 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value > 40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 40 } }
 		}
 	}
 
@@ -306,11 +313,11 @@ corp_agricorp = {
 		fulfilled_effect = 9
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value > 40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 40 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value > 70 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 70 } }
 		}
 	}
 
@@ -323,11 +330,11 @@ corp_agricorp = {
 		unfulfilled_effect = -7
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value < -10 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -10 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value < -20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -20 } }
 		}
 	}
 
@@ -340,11 +347,11 @@ corp_agricorp = {
 		unfulfilled_effect = -9
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value < -20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -20 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value < -40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -40 } }
 		}
 	}
 	# anger3
@@ -356,11 +363,11 @@ corp_agricorp = {
 		unfulfilled_effect = -11
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value < -40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -40 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value < -60 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -60 } }
 		}
 	}
 
@@ -395,7 +402,7 @@ corp_agricorp = {
 	}
 
 	on_create = {
-		pop_faction_event = { id = agricorp.1 }
+		pop_faction_event = { id = agricultural_corp.1 }
 	}
 
 	on_destroy = {

@@ -22,13 +22,12 @@ pop_faction_name_parts_list = {
 		"Intergalactic" = 1
 		"Companies" = 1
 		"Limited" = 1
-		"" = 8
 	}
 }
 
-## Agricorp
+## agriculture_corp
 pop_faction_name_parts_list = {
-	key = "corp_agricorp_names_1"
+	key = "corp_agriculture_names_1"
 	parts = {
 		"Green" = 1
 		"Technofarm" = 1
@@ -40,11 +39,12 @@ pop_faction_name_parts_list = {
 		"Agria" = 1
 		"Homestead" = 1
 		"Eco" = 1
+		"[@OWNER_agricultural_corp_home.GetName]" = 10
 	}
 }
 
 pop_faction_name_parts_list = {
-	key = "corp_agricorp_names_2"
+	key = "corp_agriculture_names_2"
 	parts = {
 		" Santo" = 1
 		" Farms" = 2
@@ -57,13 +57,120 @@ pop_faction_name_parts_list = {
 	}
 }
 
+
 pop_faction_name_format = {
 	random_weight = {
 		factor = 0
 		modifier = {
-			add = 100
-			is_pop_faction_type = "corp_agricorp"
+			add = 6
+			is_pop_faction_type = "corp_agriculture"
 		}
 	}
-	format = "<corp_agricorp_names_1><corp_agricorp_names_2> <corp_names_ending>"
+	format = "<corp_agriculture_names_1><corp_agriculture_names_2> <corp_names_ending>"
+}
+
+pop_faction_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 4
+			is_pop_faction_type = "corp_agriculture"
+		}
+	}
+	format = "<corp_agriculture_names_1><corp_agriculture_names_2>"
+}
+
+## mining_corp
+pop_faction_name_parts_list = {
+	key = "corp_mining_names_1"
+	parts = {
+		"Mosaic" = 1
+		"Earthen" = 1
+		"[This.Owner.GetHomeWorldName]" = 1
+		"First" = 1
+		"Breakstone" = 1
+		"Metalsmith" = 1
+		"Cliffs" = 1
+		"Natural" = 1
+		"Consolidated" = 1
+		"Metalbridge" = 1
+		"KRL" = 1
+		"STL" = 1
+		"Rakkat" = 1
+		"Groundstone" = 1
+		"Master" = 1
+		"Harmony" = 1
+	}
+}
+
+pop_faction_name_parts_list = {
+	key = "corp_mining_names_2"
+	parts = {
+		"Fields" = 1
+		"Core" = 1
+		"Steel" = 1
+		"Resource" = 1
+		"Mining" = 2
+		"Industries" = 1
+		"Minerals" = 1
+		"Mines" = 5
+	}
+}
+
+pop_faction_name_parts_list = {
+	key = "corp_mining_names_mines"
+	parts = {
+		"Fields" = 2
+		"Core" = 2
+		"Resource" = 1
+		"Mining Corp" = 1
+		"Mining Limited" = 1
+		"Industries" = 2
+		"Mines" = 6
+	}
+}
+
+pop_faction_name_parts_list = {
+	key = "mining_metals"
+	parts = {
+		"Molybdenum" = 1
+		"Mercury" = 1
+		"Titanium" = 1
+		"Zirconium" = 1
+		"Vanadium" = 1
+		"Niobium" = 1
+		"Beryllium" = 1
+		"Iridium" = 1
+		"Chromium" = 1
+		"Manganese" = 1
+		"Gallium" = 1
+		"Selenium" = 1
+		"Garanthium" = 1 # in-game fake minerals from here on
+		"Neutronium" = 1
+		"Orillium" = 1
+		"Teldar" = 1
+		"Betharian" = 1
+	}
+}
+
+pop_faction_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 3
+			is_pop_faction_type = "corp_mining"
+		}
+	}
+	format = "<corp_mining_names_1> <corp_mining_names_2> <corp_names_ending>"
+}
+
+pop_faction_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 4
+			is_pop_faction_type = "corp_mining"
+		}
+	}
+	format = "<corp_mining_names_1> <mining_metals> <corp_mining_names_mines>"
 }

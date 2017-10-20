@@ -1,6 +1,10 @@
+# Agricultural
+
 building_corp_agriculture_hq1 = {
-	base_buildtime = 270
+	tags = { HQ_buildings }
+
 	is_listed = no
+	base_buildtime = 270
 	planet_unique = yes
 
 	cost = {
@@ -39,8 +43,9 @@ building_corp_agriculture_hq1 = {
 }
 
 building_corp_agriculture_hq2 = {
-	is_listed = no
+	tags = { HQ_buildings }
 
+	is_listed = no
 	cost = {}
 	required_resources = {}
   produced_resources = {
@@ -75,6 +80,7 @@ building_corp_agriculture_hq2 = {
 }
 
 building_corp_agriculture_hq_branch = {
+	tags = { HQ_branch_buildings }
 	is_listed = no
 	icon = "building_probability_engine"
 
@@ -99,14 +105,22 @@ building_corp_agriculture_hq_branch = {
 	event_building = yes
 }
 
-building_corp_agriculture_farm1 = {
-	is_listed = no
-	icon = "building_xeno_zoo"
+# Mining
 
-	cost = {}
+building_corp_mining_hq1 = {
+	tags = { HQ_buildings }
+
+	is_listed = no
+	base_buildtime = 270
+	planet_unique = yes
+
+	cost = {
+		minerals = 200
+	}
 	required_resources = {}
 	produced_resources = {
-		food = 3
+		energy = 6
+		minerals = 1
 	}
 
 	upgrades = {
@@ -114,16 +128,34 @@ building_corp_agriculture_farm1 = {
 
 	ai_replace = no
 	event_building = yes
+
+  destroy_if = {
+      AND = {
+        exists = owner
+        owner = {
+          NOT = { corporations_allowed = yes }
+        }
+      }
+  }
+
+  planet_modifier  = {
+    tile_resource_minerals_mult = 0.10
+  }
+
+  required_resources = {
+		unity = 0.5
+	}
 }
 
-building_corp_agriculture_farm2 = {
-	is_listed = no
-	icon = "building_xeno_zoo"
+building_corp_mining_hq2 = {
+	tags = { HQ_buildings }
 
+	is_listed = no
 	cost = {}
 	required_resources = {}
-	produced_resources = {
-		food = 4
+  produced_resources = {
+		energy = 10
+		minerals = 1
 	}
 
 	upgrades = {
@@ -131,19 +163,48 @@ building_corp_agriculture_farm2 = {
 
 	ai_replace = no
 	event_building = yes
+
+  destroy_if = {
+    OR = {
+      AND = {
+        exists = owner
+        owner = {
+          NOT = { corporations_allowed = yes }
+        }
+      }
+    }
+  }
+
+  planet_modifier  = {
+    tile_resource_minerals_mult = 0.10
+  }
+
+  required_resources = {
+    unity = 0.75
+  }
 }
-building_corp_agriculture_farm3 = {
+
+building_corp_mining_hq_branch = {
+	tags = { HQ_branch_buildings }
 	is_listed = no
-	icon = "building_xeno_zoo"
+	icon = "building_probability_engine"
 
 	cost = {}
 	required_resources = {}
 	produced_resources = {
-		food = 6
+		energy = 4
 	}
 
 	upgrades = {
 	}
+
+	required_resources = {
+    unity = 0.25
+  }
+
+	planet_modifier  = {
+    tile_resource_minerals_mult = 0.05
+  }
 
 	ai_replace = no
 	event_building = yes

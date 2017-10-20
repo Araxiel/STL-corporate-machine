@@ -1,7 +1,7 @@
 
 # hired by agricultural corp
 # WIP
-leader_trait_corp_agricorp = {
+leader_trait_corp_agriculture = {
 	cost = 1
 	modification = no
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_iron_fist.dds"
@@ -12,7 +12,7 @@ leader_trait_corp_agricorp = {
 	}
 
 	leader_potential_add = {
-		from = { has_faction = corp_agricorp }
+		from = { has_faction = corp_agriculture }
 		NOT = { from = { has_authority = "auth_machine_intelligence" } }
 	}
 	leader_trait = yes

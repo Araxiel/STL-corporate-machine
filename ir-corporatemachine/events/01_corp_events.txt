@@ -19,9 +19,9 @@ country_event = {
 				1 = {
 					modifier = {
 						factor = 0
-						ROOT =  { has_faction = corp_agricorp }
+						ROOT =  { has_faction = corp_agriculture }
 					}
-					add_trait = leader_trait_corp_agricorp
+					add_trait = leader_trait_corp_agriculture
 				}
 			}
 		}
@@ -31,6 +31,7 @@ country_event = {
 ### General Corp
 namespace = corp_general
 
+# corp_general.1		-	corp init
 country_event = {
 	id = corp_general.1
 	is_triggered_only = yes
@@ -42,28 +43,33 @@ country_event = {
 
 	immediate = {
 		every_country = {
-			divide_variable = { which = agricorp.opinion value = 0.8 }
+			limit = {
+				has_faction = corp_agriculture
+			}
+			divide_variable = { which = corp_agriculture.opinion value = 0.8 }
+		}
+		every_country = {
+			limit = {
+				has_faction = corp_agriculture
+			}
+			divide_variable = { which = corp_mining.opinion value = 0.8 }
 		}
 	}
 }
 
-######## Agricorp
-namespace = agricorp
-
-# agricorp.1
-#Agricorp Creation
-
+# HQ
 pop_faction_event = {
-	id = agricorp.1
-	title = agricorp.1.title
-	desc = "agricorp.1.desc"
+	id = corp_general.2
+	title = corp_general.2.title
+	show_sound = event_factions
 
 	picture = GFX_evt_megafarm
-	show_sound = event_factions
+	desc = corp_general.2.desc
 
 	is_triggered_only = yes
 
 	trigger = {
+		exists = from
 	}
 
 	immediate = {
@@ -78,166 +84,103 @@ pop_faction_event = {
 						has_building = no
 					}
 				}
-				save_event_target_as = new_agricorp_planet
+				save_event_target_as = new_corp_HQ_planet
 			}
 		}
 	}
 
-	location = event_target:new_agricorp_planet
+	location = event_target:new_corp_HQ_planet
 
 	option = {
 		name = OK
 		owner= {
-			event_target:new_agricorp_planet = {
+			event_target:new_corp_HQ_planet = {
 				random_tile = {
 					limit = {
 						has_blocker = no
 						has_building = no
 					}
-					set_building = building_corp_agriculture_hq1
-					random_neighboring_tile  = {
-						limit = {
-							has_blocker = no
-							has_building = no
+					ROOT = {
+						switch = {
+							trigger = is_pop_faction_type
+							corp_agriculture 	= { PREV = { set_building = building_corp_agriculture_hq1 } }
+							corp_mining 			=	{ PREV = { set_building = building_corp_mining_hq1 } }
 						}
-						add_building_construction = building_corp_agriculture_farm1
 					}
 				}
-			}
-		}
-		hidden_effect = {
-			set_timed_pop_faction_flag = { flag = cant_expand months = 6 }
-			owner = {
-				set_country_flag = first_corp_made
-				every_owned_planet = {
-					every_owned_pop = {
-						force_faction_evaluation = yes
-					}
-				}
-				set_variable = { which = agricorp.opinion value = 0 }
 			}
 		}
 	}
 }
 
-# agricorp.2
-# expanding farms
+
+######## mining_corp
+namespace = mining_corp
+
+# mining_corp.1 				- Mining Corp Creation
 pop_faction_event = {
-	id = agricorp.2
-	title = agricorp.2.title
-	desc = "agricorp.2.desc"
-	location = event_target:new_agricorp_building_planet
+	id = mining_corp.1
+	title = mining_corp.1.title
+	desc = mining_corp.1.desc
 
 	picture = GFX_evt_megafarm
 	show_sound = event_factions
 
+	is_triggered_only = yes
+
 	trigger = {
-		is_pop_faction_type = corp_agricorp
-		NOT = { has_pop_faction_flag = cant_expand }
 	}
 
-	mean_time_to_happen = {
-		years = 5
+	option = {
+		name = OK
+		hidden_effect = {
+			pop_faction_event = { id = corp_general.2 days = 180 }
+			owner = {
+				set_country_flag = first_corp_made
+				set_variable = { which = mining_corp.opinion value = 0 }
+			}
+		}
+	}
+}
+
+######## corp_agriculture
+namespace = agricultural_corp
+
+# agricultural_corp.1		- corp_agriculture Creation
+pop_faction_event = {
+	id = agricultural_corp.1
+	title = agricultural_corp.1.title
+	desc = agricultural_corp.1.desc
+
+	picture = GFX_evt_megafarm
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	trigger = {
 	}
 
 	immediate = {
 		owner = {
 			random_owned_planet = {
-				limit = {
-					is_homeworld = no
-					any_tile = {
-						has_blocker = no
-						OR = {
-							AND = {
-								has_building = no
-								has_resource = food
-							}
-							has_building = building_basic_farm
-							has_building = building_hydroponics_farm_1
-							has_building = building_hydroponics_farm_2
-							has_building = building_hydroponics_farm_3
-							has_building = building_hydroponics_farm_4
-							has_building = building_hydroponics_farm_5
-						}
-					}
-				}
-				save_event_target_as = new_agricorp_building_planet
+				save_event_target_as = @OWNER_agricultural_corp_home
 			}
 		}
 	}
 
-	after = {
-	}
-
-	# gift it
 	option = {
-		name = GIVE_IT_TO_CORP
-		custom_tooltip = "GAIN_SMALL_OPINION_BOOST"
-		event_target:new_agricorp_building_planet = {
-			random_tile = {
-				limit = {
-					has_blocker = no
-					OR = {
-						AND = {
-							has_building = no
-							has_resource = food
-						}
-						has_building = building_basic_farm
-						has_building = building_hydroponics_farm_1
-						has_building = building_hydroponics_farm_2
-						has_building = building_hydroponics_farm_3
-						has_building = building_hydroponics_farm_4
-						has_building = building_hydroponics_farm_5
-					}
-				}
-				add_building_construction = building_corp_agriculture_farm1
+		name = OK
+		hidden_effect = {
+			pop_faction_event = { id = corp_general.2 days = 10 }
+			owner = {
+				set_country_flag = first_corp_made
+				set_variable = { which = corp_agriculture.opinion value = 0 }
 			}
 		}
-		corp_small_opinion_boost = yes
-		owner = { change_variable = { which = agricorp.opinion value = global_corp_opinion } }
-	}
-
- 	# sell it to them
-	option = {
-		name = SELL_IT_TO_CORP
-		owner = {
-			random_owned_planet = {
-				random_tile = {
-					limit = {
-						has_blocker = no
-						OR = {
-							AND = {
-								has_building = no
-								has_resource = food
-							}
-							has_building = building_basic_farm
-							has_building = building_hydroponics_farm_1
-							has_building = building_hydroponics_farm_2
-							has_building = building_hydroponics_farm_3
-							has_building = building_hydroponics_farm_4
-							has_building = building_hydroponics_farm_5
-						}
-					}
-					add_building_construction = building_corp_agriculture_farm1
-				}
-			}
-			add_energy = 250
-			corp_balanced_opinion = yes
-			owner = { change_variable = { which = agricorp.opinion value = global_corp_opinion } }
-		}
-	}
-
-	# deny request
-	option = {
-		name = DENY_CORP
-		custom_tooltip =  "GAIN_SMALL_OPINION_PENALTY"
-		corp_small_opinion_penalty = yes
-		owner = { change_variable = { which = agricorp.opinion value = global_corp_opinion } }
 	}
 }
 
 ##### Debugging Events
-
 namespace = corp_debug
 
 country_event = {
@@ -274,7 +217,7 @@ country_event = {
 
 	option = {
 		name = OK
-		enable_faction_of_type = corp_agricorp
+		enable_faction_of_type = corp_agriculture
 		every_owned_planet = {
 			every_owned_pop = {
 				force_faction_evaluation = yes
@@ -325,29 +268,8 @@ country_event = {
 		name = OK
 		every_owned_planet = {
 			every_owned_pop = {
-				set_pop_faction = corp_agricorp
+				set_pop_faction = corp_agriculture
 			}
-		}
-	}
-}
-
-country_event = {
-	id = corp_debug.3
-	title = corp_debug.3.title
-	desc = "corp_debug.3.desc"
-
-	picture = GFX_evt_galactic_senate
-
-	is_triggered_only = yes
-
-	trigger = {
-	}
-
-	option = {
-		name = OK
-		random_pop_faction = {
-			limit = { is_pop_faction_type = corp_agricorp }
-			pop_faction_event = { id = agricorp.2 days = 1 }
 		}
 	}
 }

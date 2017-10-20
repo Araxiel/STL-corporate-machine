@@ -1,4 +1,4 @@
-NDefines.NGameplay.POP_CURRENT_FACTION_LAST_MEMBER_WEIGHT		= 200.0	# Weight for current faction is multiplied by this much for pops when they are the last faction member
+﻿NDefines.NGameplay.POP_CURRENT_FACTION_LAST_MEMBER_WEIGHT		= 200.0	# Weight for current faction is multiplied by this much for pops when they are the last faction member
 
 
 #POP_DISENFRANCHISE_EFFECT 					= 0.25 	# How much does a disenfrachised Pop contribute to faction support (where Pop with the vote = 1)

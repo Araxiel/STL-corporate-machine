@@ -3,17 +3,18 @@
 #	by Araxiel
 ##############################
 
-corp_agricorp = {
+corp_mining = {
 	election_header = "GFX_faction_header_green"
 	guiding_ethic = ethic_materialist
 
 	unique = yes
-	support_multiplier = 1.2
+	support_multiplier = 0.65
 
 	## Add: No Fallen?
 
 	is_potential = {
 		has_policy_flag = corporations_allowed
+		NOT = { is_corp_empire = yes }
 	}
 
 	parameters = {
@@ -26,17 +27,15 @@ corp_agricorp = {
 	}
 
 	can_join_faction = {
-		can_join_factions_basic_triggers = yes
-		NOT = { has_ethic = ethic_militarist }
-		NOT = { has_ethic = ethic_fanatic_militarist }
+		can_join_corp_basic_triggers = yes
 		OR = {
-			pop_produces_resource = { type = food amount > 1 }
+			pop_produces_resource = { type = minerals amount > 1 }
 			planet = {
 				any_tile = {
 					OR = {
-						has_building = building_corp_agriculture_hq1
-						has_building = building_corp_agriculture_hq2
-						has_building = building_corp_agriculture_hq_branch
+						has_building = building_corp_mining_hq1
+						has_building = building_corp_mining_hq2
+						has_building = building_corp_mining_hq_branch
 					}
 				}
 			}
@@ -54,9 +53,9 @@ corp_agricorp = {
 		}
 
 		modifier = {
-			factor = 1.20
+			factor = 1.25
 			planet = {
-				has_edict = corp_agricorp_boost
+				has_edict = mining_corp_boost
 			}
 		}
 
@@ -64,9 +63,9 @@ corp_agricorp = {
 			factor = 1.1
 			planet = {
 				OR = {
-					has_building = building_corp_agriculture_hq1
-					has_building = building_corp_agriculture_hq2
-					has_building = building_corp_agriculture_hq_branch
+					has_building = building_corp_mining_hq1
+					has_building = building_corp_mining_hq2
+					has_building = building_corp_mining_hq_branch
 				}
 			}
 		}
@@ -75,26 +74,28 @@ corp_agricorp = {
 			factor = 2
 			tile = {
 				OR = {
-					has_building = building_corp_agriculture_hq1
-					has_building = building_corp_agriculture_hq2
-					has_building = building_corp_agriculture_hq_branch
-					has_building = building_corp_agriculture_farm1
-					has_building = building_corp_agriculture_farm2
-					has_building = building_corp_agriculture_farm3
+					has_building = building_corp_mining_hq1
+					has_building = building_corp_mining_hq2
+					has_building = building_corp_mining_hq_branch
 				}
 			}
 		}
 
 		modifier = {
 			factor = 1.1
-			pop_produces_resource = { type = food amount > 2 }
+			pop_produces_resource = { type = minerals amount > 2 }
+		}
+
+		modifier = {
+			factor = 1.1
+			pop_produces_resource = { type = minerals amount > 3 }
 		}
 
 		modifier = {
 			factor = 1.1
 			owner = {
 				any_owned_planet  = {
-					has_building = building_corp_agriculture_hq1
+					has_building = building_corp_mining_hq1
 				}
 			}
 		}
@@ -102,7 +103,7 @@ corp_agricorp = {
 			factor = 1.2
 			owner = {
 				any_owned_planet  = {
-					has_building = building_corp_agriculture_hq2
+					has_building = building_corp_mining_hq2
 				}
 			}
 		}
@@ -110,15 +111,20 @@ corp_agricorp = {
 		modifier = {
 			factor = 0.6
 			AND = {
-				pop_produces_resource = { type = food amount < 1 }
+				pop_produces_resource = { type = minerals amount < 1 }
 				NOT = {
 					OR = {
-						tile = { has_building = building_corp_agriculture_hq1	}
-						tile = { has_building = building_corp_agriculture_hq2 }
-						tile = { has_building = building_corp_agriculture_hq_branch }
+						tile = { has_building = building_corp_mining_hq1	}
+						tile = { has_building = building_corp_mining_hq2 }
+						tile = { has_building = building_corp_mining_hq_branch }
 					}
 				}
 			}
+		}
+
+		modifier = {
+			factor = 0.6
+			pop_produces_resource = { type = food amount > 0 }
 		}
 
 	}
@@ -141,7 +147,7 @@ corp_agricorp = {
 
 		modifier = {
 			factor = 1.6
-			has_trait = leader_trait_corp_agricorp
+			has_trait = leader_trait_corp_agriculture
 		}
 
 		modifier = {
@@ -272,11 +278,11 @@ corp_agricorp = {
 		fulfilled_effect = 5
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value > 10 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 10 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value > 20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 20 } }
 		}
 	}
 
@@ -289,11 +295,11 @@ corp_agricorp = {
 		fulfilled_effect = 8
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value > 20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 20 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value > 40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 40 } }
 		}
 	}
 
@@ -306,11 +312,11 @@ corp_agricorp = {
 		fulfilled_effect = 9
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value > 40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 40 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value > 70 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value > 70 } }
 		}
 	}
 
@@ -323,11 +329,11 @@ corp_agricorp = {
 		unfulfilled_effect = -7
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value < -10 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -10 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value < -20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -20 } }
 		}
 	}
 
@@ -340,11 +346,11 @@ corp_agricorp = {
 		unfulfilled_effect = -9
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value < -20 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -20 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value < -40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -40 } }
 		}
 	}
 	# anger3
@@ -356,11 +362,11 @@ corp_agricorp = {
 		unfulfilled_effect = -11
 
 		potential = {
-			owner = { check_variable = { which = agricorp.opinion value < -40 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -40 } }
 		}
 
 		trigger = {
-			owner = { check_variable = { which = agricorp.opinion value < -60 } }
+			owner = { check_variable = { which = agriculture_corp.opinion value < -60 } }
 		}
 	}
 
@@ -384,8 +390,8 @@ corp_agricorp = {
 				is_at_war = yes
 				any_owned_planet = {
 					OR = {
-						has_building = building_corp_agriculture_hq1
-						has_building = building_corp_agriculture_hq2
+						has_building = building_corp_mining_hq1
+						has_building = building_corp_mining_hq2
 					}
 					NOT = { is_controlled_by = owner }
 					is_occupied_flag = yes
@@ -394,9 +400,7 @@ corp_agricorp = {
 		}
 	}
 
-	on_create = {
-		pop_faction_event = { id = agricorp.1 }
-	}
+	on_create = {		pop_faction_event = { id = mining_corp.1 }	}
 
 	on_destroy = {
 	}
