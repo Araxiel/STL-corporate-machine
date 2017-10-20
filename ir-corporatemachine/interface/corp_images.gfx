@@ -1,8 +1,14 @@
 spriteTypes = {
 
 	spriteType = {
-		name = "GFX_faction_icon_corp_agricorp"
-		textureFile = "gfx/interface/icons/faction_icons/agricorp.dds"
+		name = "GFX_faction_icon_corp_agriculture"
+		textureFile = "gfx/interface/icons/faction_icons/agri_corp_faction.dds"
+		noOfFrames = 1
+	}
+
+	spriteType = {
+		name = "GFX_faction_icon_corp_mining"
+		textureFile = "gfx/interface/icons/faction_icons/mining_corp_faction.dds"
 		noOfFrames = 1
 	}
 
